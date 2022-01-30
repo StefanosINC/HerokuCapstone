@@ -2,6 +2,8 @@ package com.gcu.business;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -14,6 +16,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 
 import com.gcu.data.EmployeeDataService;
+
 import com.gcu.data.entity.EmployeeEntity;
 
 import com.gcu.model.EmployeeModel;
@@ -48,7 +51,7 @@ public class EmployeeService implements EmployeeServiceInterface, UserDetailsSer
 			List<EmployeeModel> userdomain = new ArrayList<EmployeeModel>();
 			for(EmployeeEntity entity : userEntity)
 			{
-				userdomain.add(new EmployeeModel(entity.getUsername(),entity.getPassword(),entity.getEmail(),entity.getPhone(),entity.getFirstname(),entity.getLastname(),entity.getRole()));
+				userdomain.add(new EmployeeModel(entity.getId(), entity.getUsername(), entity.getPassword(),entity.getEmail(),entity.getPhone(),entity.getFirstname(),entity.getLastname(),entity.getRole()));
 				
 			}
 			
@@ -110,9 +113,45 @@ public class EmployeeService implements EmployeeServiceInterface, UserDetailsSer
 		// TODO Auto-generated method stub
 		EmployeeEntity newEmployee = service.create(user);
 		
-		return new EmployeeModel(newEmployee.getUsername(), newEmployee.getPassword(), newEmployee.getEmail(), newEmployee.getPhone(), newEmployee.getFirstname(), newEmployee.getLastname(), newEmployee.getRole());
+		return new EmployeeModel(newEmployee.getId(), newEmployee.getUsername(), newEmployee.getPassword(), newEmployee.getEmail(), newEmployee.getPhone(), newEmployee.getFirstname(), newEmployee.getLastname(), newEmployee.getRole());
+	}
+
+//	@Override
+//	public EmployeeModel getEmployeebyID(String id) {
+//		
+//	
+//	}
+
+	@Override
+	public EmployeeModel update(EmployeeModel t) {
+		// TODO Auto-generated method stub
+		
+		// Call the service update method
+				EmployeeEntity employeeEntity = service.update(t);
+				return ConvertEntity(employeeEntity);
+	}
+	@Override
+	public EmployeeModel getEmployeebyID(String id) {
+		EmployeeEntity employeeEntity = service.findById(id);
+		
+		return ConvertEntity(employeeEntity);
+	}
+	
+	public EmployeeModel ConvertEntity(EmployeeEntity model) {
+		return new EmployeeModel(model.getId(), model.getUsername(), model.getPassword(), model.getEmail(), model.getPhone(), model.getFirstname(), model.getLastname(), model.getRole());
+	}
+
+	@Override
+	public void Delete(String id) {
+		// TODO Auto-generated method stub
+		service.DeleteUser(id);
 	}
 	}
+	
+	
+	
+	
+	
 
 
 	

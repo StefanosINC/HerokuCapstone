@@ -2,7 +2,7 @@ package com.gcu.model;
 
 public class EmployeeModel {
 
-	private Long employee_id;
+	private String employee_id;
 	
 	private String username;
 	private String password;
@@ -15,9 +15,11 @@ public class EmployeeModel {
 	
 	
 	
-	public EmployeeModel(String username, String password, String email, String phone, String firstname, String lastname,
-			String role) {
+	
+	public EmployeeModel(String employee_id, String username, String password, String email, String phone,
+			String firstname, String lastname, String role) {
 		super();
+		this.employee_id = employee_id;
 		this.username = username;
 		this.password = password;
 		this.email = email;
@@ -26,17 +28,21 @@ public class EmployeeModel {
 		this.lastname = lastname;
 		this.role = role;
 	}
-	
+
+
 	public EmployeeModel() {
 		
 	}
 	
-	public Long getEmployee_id() {
+
+	public String getEmployee_id() {
 		return employee_id;
 	}
-	public void setEmployee_id(Long employee_id) {
+
+	public void setEmployee_id(String employee_id) {
 		this.employee_id = employee_id;
 	}
+
 	public String getUsername() {
 		return username;
 	}

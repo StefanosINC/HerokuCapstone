@@ -11,10 +11,13 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.gcu.business.EmployeeServiceInterface;
+import com.gcu.data.EmployeeDataAccessInterface;
 
 import com.gcu.model.EmployeeModel;
+
 
 
 
@@ -29,7 +32,8 @@ public class EmployeeController {
 	
 	
 	
-	
+	@Autowired
+	private EmployeeDataAccessInterface dataservice;
 	
 	
 	// Login
@@ -92,6 +96,83 @@ public class EmployeeController {
 		
 		return "EmployeeCards.html";
 	}
-
+	
+	
+	@GetMapping("/editForm")
+	public String displayEditForm(@RequestParam("id") String id, Model model)
+	{
+		
+		
+		EmployeeModel foundEmployee = employeeservice.getEmployeebyID(id);
+		
+		System.out.println("Employee info is " + foundEmployee.getUsername());
+		
+		model.addAttribute("employee", foundEmployee);
+		return "EditEmployeeForm";
+	}
+	
+	 
+		@PostMapping("/edit")
+		public String edit(EmployeeModel employee, BindingResult bindingResult, Model model)
+		{
+	
+	
+		
+		EmployeeModel updatedUser = employeeservice.update(employee);
+		System.out.print(updatedUser.getEmployee_id() + updatedUser.getUsername());
+		model.addAttribute("employee", updatedUser);
+		
+		
+			
+			//EmployeeModel updatedAlbum = employeeservice.update(employee);	
+				//model.addAttribute("title", "Albums4You");
+			//	model.addAttribute("employee", updatedAlbum);
+			
+			
+			return "ViewEmployeesForm";
+		}	
+		
+		@GetMapping("/delete")
+		public String displayDeleteForm(@RequestParam("id") String id, Model model) 
+		{	
+			try {
+				EmployeeModel foundAlbum = employeeservice.getEmployeebyID(id);
+		
+				model.addAttribute("title", "Are you sure you want to delete?");
+				model.addAttribute("album", foundAlbum);
+			}
+			catch(Exception e) {
+			
+				
+			}
+			
+			return "DeleteConfirmation";
+			
+			
+			
+		
 	
 }
+		
+		@GetMapping("/processdelete")
+		public String deleteAlbum(@RequestParam("id") String id, EmployeeModel album, Model model)
+		{	
+			System.out.println("Index: " + album);
+			
+			
+				
+				//EmployeeModel idAlbum = employeeservice.getEmployeebyID(id);
+				
+				employeeservice.Delete(id);
+				//employeeservice.Delete(album.getEmployee_id());			
+				System.out.println("Deleted Album is " + album);
+				
+				model.addAttribute("title", "Albums4You");
+				model.addAttribute("album", album);
+			
+		
+			
+			return "index";
+		}
+}
+	

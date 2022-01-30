@@ -31,9 +31,10 @@ public class EmployeeEntity {
 		
 	}
 
-	public EmployeeEntity(String username, String password, String email, String phone, String firstname,
+	public EmployeeEntity(String id, String username, String password, String email, String phone, String firstname,
 			String lastname, String role) {
 		super();
+		this.id = id;
 		this.username = username;
 		this.password = password;
 		this.email = email;
@@ -42,6 +43,7 @@ public class EmployeeEntity {
 		this.lastname = lastname;
 		this.role = role;
 	}
+
 
 
 

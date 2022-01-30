@@ -2,13 +2,13 @@ package com.gcu.data;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
 import com.gcu.data.entity.EmployeeEntity;
-
 import com.gcu.model.EmployeeModel;
 
 import com.gcu.repository.EmployeeRepository;
@@ -107,7 +107,7 @@ public EmployeeEntity create(EmployeeModel t) {
 	// TODO Auto-generated method stub
 	EmployeeEntity newEmployee = null;
 
-	newEmployee = new EmployeeEntity(t.getUsername(), t.getPassword(), t.getEmail(), t.getPhone(), t.getFirstname(), t.getLastname(), t.getRole());			
+	newEmployee = new EmployeeEntity(t.getEmployee_id(), t.getUsername(), t.getPassword(), t.getEmail(), t.getPhone(), t.getFirstname(), t.getLastname(), t.getRole());			
 	 
 	newEmployee = this.employeeRepository.save(newEmployee);
 	
@@ -115,4 +115,52 @@ public EmployeeEntity create(EmployeeModel t) {
 	
 	return newEmployee;
 }
+
+
+
+
+
+
+
+@Override
+public EmployeeEntity update(EmployeeModel t) {
+	// Make a new album entity
+			EmployeeEntity employeeEntity = new EmployeeEntity(t.getEmployee_id(), t.getUsername(), t.getPassword(), t.getEmail(), t.getPhone(), t.getFirstname(), t.getLastname(), t.getRole());	
+			// Making a new album entity, saving the album entity, then return it at the end of the method.
+			employeeEntity = this.employeeRepository.save(employeeEntity);
+			
+			
+
+			return employeeEntity;
+		}
+
+
+
+@Override
+public EmployeeEntity findById(String id) {
+	return employeeRepository.getOrderById(id);
+	
+	
+	
 }
+
+
+
+@Override
+public void DeleteUser(String t){
+	// TODO Auto-generated method stub
+
+	employeeRepository.deleteById(t);
+	Optional<EmployeeEntity> user;
+	user = employeeRepository.findById(t);
+	
+	
+	
+	
+}
+
+
+}
+
+
+

@@ -6,8 +6,66 @@
 </head>
 
 <body>
-
-<h1> Hello </h2>
+<div layout:fragment="content">
+		<div class = "card">
+			<form action ="#" th:action="@{/edit}" th:object="${employee}" method="post">
+		
+		<h1>Edit Employee Form</h1>
+	
+	
+	
+					
+					<td><input type="text" name="username" th:field ="*{username}" placeholder ="Username" id="username" required/> </td>
+				
+				</tr>
+				<tr>
+				
+					<td><input type ="password"  name="password"th:field ="*{password}"  placeholder = "Password" id="password" ></td>
+					
+				</tr>
+				
+				<tr>
+				
+					<td><input type ="text"  name="email" th:field ="*{email}"  placeholder = "Email" id="email" ></td>
+					
+				</tr>
+				
+				<tr>
+				
+					<td><input type ="text"  name="phone" th:field ="*{phone}"  placeholder = "Phone" id="phone" ></td>
+					
+				</tr>
+				
+				<tr>
+				
+					<td><input type ="text"  name="firstname" th:field ="*{firstname}" placeholder = "Firstname" id="firstname" ></td>
+					
+				</tr>
+				
+					<tr>
+				
+					<td><input type ="text"  name="lastname"  th:field ="*{lastname}" placeholder = "Lastname" id="lastname" ></td>
+					
+				</tr>
+				
+					<tr>
+				
+					<td><input type ="text"  name="role"th:field ="*{role}"  placeholder = "Role" id="role" ></td>
+					
+				</tr>
+				<div class = button>
+				<tr>		
+					<td colspan="3"><input type="submit" value="Submit"/>
+					</td>
+					
+				</tr>
+				
+						
+		
+				
+						
+			</form>
+		</div>
 
 </body>
 </html>
@@ -16,11 +74,62 @@
 div#navbarCollapse.collapse.navbar-collapse{
 	background-image: linear-gradient(315deg, #63a4ff 0%, #83eaf1 74%);
 	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-	font-family: serif;
 }
-
+form{
+max-width: 400px;
+    width: 90%;
+    background: currentColor;
+    padding: 40px;
+    border-radius: 4px;
+    height: 730px;
+    background: white;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  width: 40%;
+    
+    }
  body{
 		background: #F0F0F0
+}
+div.form{
+	padding: 45px;
+	
+}
+
+input#username{
+	margin: 15px;
+    padding: 10px;
+    border-radius: 5px;
+}
+input#password{
+	margin: 15px;
+    padding: 10px;
+    border-radius: 5px;
+}
+input#role{
+	margin: 15px;
+    padding: 10px;
+    border-radius: 5px;
+}
+input#firstname{
+	margin: 15px;
+    padding: 10px;
+    border-radius: 5px;
+}
+input#lastname{
+	margin: 15px;
+    padding: 10px;
+    border-radius: 5px;
+}
+input#email{
+	margin: 15px;
+    padding: 10px;
+    border-radius: 5px;
+}
+input#phone{
+	margin: 15px;
+    padding: 10px;
+    border-radius: 5px;
 }
 input{
 display: inline-block;
@@ -37,11 +146,13 @@ display: inline-block;
   transition: all 0.2s;
   
 }
-li{
-	font-size: large;
-	color: black;
+div.button{
+	padding: 15px;
 }
-a{
-	color: black;
+
+h1{
+	font-family : serif;
 }
 </style>
+
+

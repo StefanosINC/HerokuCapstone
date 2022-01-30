@@ -21,4 +21,10 @@ public interface EmployeeServiceInterface {
 	public String doLogin(EmployeeModel credentialsModel, BindingResult bindingResult, Model model);
 	List<EmployeeModel> findAll();
 	public EmployeeModel insertEmployee(EmployeeModel user);
+  public EmployeeModel getEmployeebyID(String id);
+	
+	
+	public EmployeeModel update(EmployeeModel t);
+	
+	public void Delete(String id);
 }

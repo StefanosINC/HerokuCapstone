@@ -45,10 +45,15 @@
 							
 							
 						
-					
+					 				<td>
+	                            	<a th:href ="@{/editForm(id=${employee.employee_id})}">Edit</a>                     
+	                            </td>
+	                            
+	                            <td>
+	                            	<a th:href ="@{/processdelete(id=${employee.employee_id})}">Delete</a>                     
+	                            </td>		  
 							</td>
-							
-							
+				
 						
 					
                         </tr>

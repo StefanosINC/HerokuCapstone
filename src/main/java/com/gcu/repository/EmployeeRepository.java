@@ -1,5 +1,8 @@
 package com.gcu.repository;
 
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.data.mongodb.repository.MongoRepository;
 
 import com.gcu.data.entity.EmployeeEntity;
@@ -9,5 +12,6 @@ public interface  EmployeeRepository extends MongoRepository<EmployeeEntity, Str
 
 	EmployeeEntity findByUsername(String username);
 
-	//EmployeeModel findbyId(String employee_id);
+	EmployeeEntity getOrderById(String id);
+
 }

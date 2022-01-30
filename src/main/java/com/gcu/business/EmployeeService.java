@@ -55,6 +55,7 @@ public class EmployeeService implements EmployeeServiceInterface, UserDetailsSer
 			return userdomain;	
 		}
 	
+	
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException
 	{
@@ -102,6 +103,14 @@ public class EmployeeService implements EmployeeServiceInterface, UserDetailsSer
 	// DAO Login
 	public boolean login(EmployeeModel user) {
 		return service.login(user);
+	}
+	
+	@Override
+	public EmployeeModel insertEmployee(EmployeeModel user) {
+		// TODO Auto-generated method stub
+		EmployeeEntity newEmployee = service.create(user);
+		
+		return new EmployeeModel(newEmployee.getUsername(), newEmployee.getPassword(), newEmployee.getEmail(), newEmployee.getPhone(), newEmployee.getFirstname(), newEmployee.getLastname(), newEmployee.getRole());
 	}
 	}
 

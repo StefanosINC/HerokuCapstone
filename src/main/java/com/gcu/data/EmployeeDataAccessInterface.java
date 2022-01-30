@@ -2,7 +2,9 @@ package com.gcu.data;
 
 import java.util.List;
 
+
 import com.gcu.data.entity.EmployeeEntity;
+
 import com.gcu.model.EmployeeModel;
 
 
@@ -16,5 +18,7 @@ public interface EmployeeDataAccessInterface <T> {
 	public T findByUsername(String username);
 
 	List<EmployeeEntity> findAll();
+
+	public EmployeeEntity create(EmployeeModel t);
 	
 }

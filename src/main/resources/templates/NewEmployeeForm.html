@@ -8,48 +8,58 @@
 <body>
 <div layout:fragment="content">
 		<div class = "card">
-			<form action ="#" th:action="@{/albums/create}" th:object="${albumModel}" method="post">
-			<table>
-			<tr>
-		<!--	 <td> Title  </td> <td><input type="text" name="txt" placeholder = "Title"  th:field="*{title}" ></td><td><h5 style="color:red" th:if="${#fields.hasErrors('title')}" th:errors="*{title}">Title Error </h5></td>
+			<form action ="#" th:action="@{/create}" th:object="${employeeModel}" method="post">
+		
+		<h1>New Employee Form</h1>
+	
+					
+					<td><input type="text" name="username" placeholder ="Username" id="username" required/></td>
 				
-					<div class = "card-body">
-					
-					</tr>
-					
-					<tr>
-						
-					<td> Artist </td> <td> <input type="text" name="txt" placeholder = "Artist" th:field="*{artist}" ></td><td><h5 style="color:red" th:if="${#fields.hasErrors('artist')}" th:errors="*{artist}">Artist Error </h5></td>
-						</tr>
-				<td> Year </td> <td> <input type="text" name="txt" placeholder = "" th:field="*{year}" ></td>
-					
-					</tr>
-					<tr>
-						<td> Price  </td> <td> <input type="text" name="txt" placeholder = "" th:field="*{price}" ></td>
-					</tr>
-						<tr>
-						
+				</tr>
+				<tr>
 				
-						<td>Track 1 </td> <td> <input type="text" name="txt" placeholder = "Track 1"  th:field="*{tracks[0].title}" ></td>
-					</tr>
-					<tr>
-						<td>Length </td><td><input type="text" name="txt" placeholder = "Track 1 Length"  th:field="*{tracks[0].length}" ></td>
-					</tr> 
-				     <tr>
-						<td> Track 2: </td><td><input type ="text" th:field="*{tracks[1].title}" ></td>
-					</tr>
-					<tr>
-						<td> Track 2 Length: </td><td><input type ="text" th:field="*{tracks[1].length}" ></td>
-					</tr> 
-		<td colspan="3"><input type="submit" value="Create"/></td>
-						</tr>
+					<td><input type ="password"  name="password" placeholder = "Password" id="password" ></td>
 					
-							
-					 
-					<tr> -->
+				</tr>
+				
+				<tr>
+				
+					<td><input type ="text"  name="email" placeholder = "Email" id="email" ></td>
 					
+				</tr>
+				
+				<tr>
+				
+					<td><input type ="text"  name="phone" placeholder = "Phone" id="phone" ></td>
+					
+				</tr>
+				
+				<tr>
+				
+					<td><input type ="text"  name="firstname" placeholder = "Firstname" id="firstname" ></td>
+					
+				</tr>
+				
+					<tr>
+				
+					<td><input type ="text"  name="lastname" placeholder = "Lastname" id="lastname" ></td>
+					
+				</tr>
+				
+					<tr>
+				
+					<td><input type ="text"  name="role" placeholder = "Role" id="role" ></td>
+					
+				</tr>
+				<div class = button>
+				<tr>		
+					<td colspan="3"><input type="submit" value="Submit"/>
+					</td>
+					
+				</tr>
+				
 						
-			</table>
+		
 				
 						
 			</form>
@@ -62,11 +72,62 @@
 div#navbarCollapse.collapse.navbar-collapse{
 	background-image: linear-gradient(315deg, #63a4ff 0%, #83eaf1 74%);
 	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-	font-family: serif;
 }
-
+form{
+max-width: 400px;
+    width: 90%;
+    background: currentColor;
+    padding: 40px;
+    border-radius: 4px;
+    height: 730px;
+    background: white;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  width: 40%;
+    
+    }
  body{
 		background: #F0F0F0
+}
+div.form{
+	padding: 45px;
+	
+}
+
+input#username{
+	margin: 15px;
+    padding: 10px;
+    border-radius: 5px;
+}
+input#password{
+	margin: 15px;
+    padding: 10px;
+    border-radius: 5px;
+}
+input#role{
+	margin: 15px;
+    padding: 10px;
+    border-radius: 5px;
+}
+input#firstname{
+	margin: 15px;
+    padding: 10px;
+    border-radius: 5px;
+}
+input#lastname{
+	margin: 15px;
+    padding: 10px;
+    border-radius: 5px;
+}
+input#email{
+	margin: 15px;
+    padding: 10px;
+    border-radius: 5px;
+}
+input#phone{
+	margin: 15px;
+    padding: 10px;
+    border-radius: 5px;
 }
 input{
 display: inline-block;
@@ -83,11 +144,13 @@ display: inline-block;
   transition: all 0.2s;
   
 }
-li{
-	font-size: large;
-	color: black;
+div.button{
+	padding: 15px;
 }
-a{
-	color: black;
+
+h1{
+	font-family : serif;
 }
 </style>
+
+

@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+
 import com.gcu.data.entity.EmployeeEntity;
 
 import com.gcu.model.EmployeeModel;
@@ -25,42 +26,7 @@ public class EmployeeDataService implements EmployeeDataAccessInterface<Employee
 		this.employeeRepository = employeeRepository;
 	}
 
-//	@Override
-//	public EmployeeEntity login(EmployeeModel user) {
-//		// TODO Auto-generated method stub
-//		
-//		
-//		
-//		List<EmployeeEntity> employees = new ArrayList<EmployeeEntity>();
-//		
-//		EmployeeEntity foundEmployee = null;
-//		employees = FindAllEmployees();
-//		
-//		
-//		for(int i = 0; i <employees.size(); i++) {
-//			
-//			if(employees.get(i).getUsername().equals(user.getUsername()) && employees.get(i).getPassword().equals(user.getPassword())); 
-//			{
-//				foundEmployee = employees.get(i);
-//				
-//				System.out.println(employees.get(i).getUsername() + " Is Apparantly Equal To " + user.getUsername());
-//			}
-//			
-//		}
-//	
-//		System.out.println(foundEmployee);
-//		System.out.print(user.getUsername());
-//		System.out.print(user.getPassword());
-//		
-//		
-//			return foundEmployee;
-//		
-//		
-//		
-//	
-//		
-//		
-//	}
+
 	
 	// Find and All. (Print the entire list of Register users)
 	
@@ -132,5 +98,21 @@ public class EmployeeDataService implements EmployeeDataAccessInterface<Employee
 public EmployeeEntity findByUsername(String username) 
 {		
 	return employeeRepository.findByUsername(username);
+}
+
+
+
+@Override
+public EmployeeEntity create(EmployeeModel t) {
+	// TODO Auto-generated method stub
+	EmployeeEntity newEmployee = null;
+
+	newEmployee = new EmployeeEntity(t.getUsername(), t.getPassword(), t.getEmail(), t.getPhone(), t.getFirstname(), t.getLastname(), t.getRole());			
+	 
+	newEmployee = this.employeeRepository.save(newEmployee);
+	
+	
+	
+	return newEmployee;
 }
 }

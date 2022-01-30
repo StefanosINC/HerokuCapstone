@@ -55,7 +55,7 @@ public class EmployeeController {
 		
 		System.out.println(employeeList);
 		// Set the title attribute (from common)
-		model.addAttribute("title", "View Employees");
+//		model.addAttribute("title", "View Employees");
 		
 		// add the employee attribute which is in list of employees
 		model.addAttribute("employeeList", employeeList);

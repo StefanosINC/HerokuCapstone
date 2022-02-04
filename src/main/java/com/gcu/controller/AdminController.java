@@ -22,6 +22,13 @@ public class AdminController {
 		return "AdminControllerPage";
 	}
 	
+	@GetMapping("/createSchedule")
+		public String populateSchedule(Model model){
+		
+		model.addAttribute("new Form" , " ");
+		return "CreateCalendar";
+	
+	}
 	
 	
 	}

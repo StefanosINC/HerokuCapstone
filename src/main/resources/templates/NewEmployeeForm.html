@@ -1,4 +1,4 @@
-<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="layouts/defaultLayout">
+<html xmlns:th="http://www.thymeleaf.org"  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="layouts/defaultLayout">
 <head>
 	<meta charset="UTF-8">
 	<title> </title>
@@ -10,7 +10,7 @@
 		<div class = "card">
 			<form action ="#" th:action="@{/create}" th:object="${employeeModel}" method="post">
 		
-		<h1>New Employee Form</h1>
+		<h1>Employee Registration Form</h1>
 	
 					
 					<td><input type="text" name="username" placeholder ="Username" id="username" required/></td>
@@ -51,9 +51,27 @@
 					<td><input type ="text"  name="role" placeholder = "Role" id="role" ></td>
 					
 				</tr>
+				
+				<tr>
+				
+				<tr>
+				
+					<td><input type ="text"  name="punch_in" placeholder = "Punch_in" id="punch_in" ></td>
+					
+				</tr>
+				
+				<tr>
+				
+				<tr>
+				
+					<td><input type ="text"  name="role" placeholder = "Role" id="punch_out" ></td>
+					
+				</tr>
+				
+				<tr>
 				<div class = button>
 				<tr>		
-					<td colspan="3"><input type="submit" value="Submit"/>
+					<td colspan="3"><input type="submit" value="Create"/>
 					</td>
 					
 				</tr>
@@ -84,6 +102,7 @@ max-width: 400px;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
   transition: 0.3s;
   width: 40%;
+  border-radius: 25px;
     
     }
  body{
@@ -143,13 +162,18 @@ display: inline-block;
   text-align: center;
   transition: all 0.2s;
   
+  
 }
 div.button{
 	padding: 15px;
+	border-radius : 5px;
 }
 
 h1{
 	font-family : serif;
+}
+input{
+	
 }
 </style>
 

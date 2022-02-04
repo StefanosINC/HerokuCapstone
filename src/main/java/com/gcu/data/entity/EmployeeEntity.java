@@ -1,8 +1,12 @@
 package com.gcu.data.entity;
 
+import java.util.List;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
+
+import com.gcu.model.TimeCard;
 
 @Document(collection="employees")
 public class EmployeeEntity {
@@ -26,13 +30,13 @@ public class EmployeeEntity {
 	
 	String role;
 
-	
+	private List<TimeCard> timecard;
 	public EmployeeEntity() {
 		
 	}
 
 	public EmployeeEntity(String id, String username, String password, String email, String phone, String firstname,
-			String lastname, String role) {
+			String lastname, String role, List<TimeCard> timecard) {
 		super();
 		this.id = id;
 		this.username = username;
@@ -50,6 +54,14 @@ public class EmployeeEntity {
 
 
 
+
+	public List<TimeCard> getTimecard() {
+		return timecard;
+	}
+
+	public void setTimecard(List<TimeCard> timecard) {
+		this.timecard = timecard;
+	}
 
 	public String getId() {
 		return id;

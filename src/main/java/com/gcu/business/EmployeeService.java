@@ -51,7 +51,7 @@ public class EmployeeService implements EmployeeServiceInterface, UserDetailsSer
 			List<EmployeeModel> userdomain = new ArrayList<EmployeeModel>();
 			for(EmployeeEntity entity : userEntity)
 			{
-				userdomain.add(new EmployeeModel(entity.getId(), entity.getUsername(), entity.getPassword(),entity.getEmail(),entity.getPhone(),entity.getFirstname(),entity.getLastname(),entity.getRole()));
+				userdomain.add(new EmployeeModel(entity.getId(), entity.getUsername(), entity.getPassword(),entity.getEmail(),entity.getPhone(),entity.getFirstname(),entity.getLastname(),entity.getRole(), entity.getTimecard()));
 				
 			}
 			
@@ -113,7 +113,7 @@ public class EmployeeService implements EmployeeServiceInterface, UserDetailsSer
 		// TODO Auto-generated method stub
 		EmployeeEntity newEmployee = service.create(user);
 		
-		return new EmployeeModel(newEmployee.getId(), newEmployee.getUsername(), newEmployee.getPassword(), newEmployee.getEmail(), newEmployee.getPhone(), newEmployee.getFirstname(), newEmployee.getLastname(), newEmployee.getRole());
+		return new EmployeeModel(newEmployee.getId(), newEmployee.getUsername(), newEmployee.getPassword(), newEmployee.getEmail(), newEmployee.getPhone(), newEmployee.getFirstname(), newEmployee.getLastname(), newEmployee.getRole(), newEmployee.getTimecard());
 	}
 
 //	@Override
@@ -138,7 +138,7 @@ public class EmployeeService implements EmployeeServiceInterface, UserDetailsSer
 	}
 	
 	public EmployeeModel ConvertEntity(EmployeeEntity model) {
-		return new EmployeeModel(model.getId(), model.getUsername(), model.getPassword(), model.getEmail(), model.getPhone(), model.getFirstname(), model.getLastname(), model.getRole());
+		return new EmployeeModel(model.getId(), model.getUsername(), model.getPassword(), model.getEmail(), model.getPhone(), model.getFirstname(), model.getLastname(), model.getRole(), model.getTimecard());
 	}
 
 	@Override

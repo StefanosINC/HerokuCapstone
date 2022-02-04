@@ -107,7 +107,7 @@ public EmployeeEntity create(EmployeeModel t) {
 	// TODO Auto-generated method stub
 	EmployeeEntity newEmployee = null;
 
-	newEmployee = new EmployeeEntity(t.getEmployee_id(), t.getUsername(), t.getPassword(), t.getEmail(), t.getPhone(), t.getFirstname(), t.getLastname(), t.getRole());			
+	newEmployee = new EmployeeEntity(t.getEmployee_id(), t.getUsername(), t.getPassword(), t.getEmail(), t.getPhone(), t.getFirstname(), t.getLastname(), t.getRole(), t.getTimecard());			
 	 
 	newEmployee = this.employeeRepository.save(newEmployee);
 	
@@ -125,13 +125,13 @@ public EmployeeEntity create(EmployeeModel t) {
 @Override
 public EmployeeEntity update(EmployeeModel t) {
 	// Make a new album entity
-			EmployeeEntity employeeEntity = new EmployeeEntity(t.getEmployee_id(), t.getUsername(), t.getPassword(), t.getEmail(), t.getPhone(), t.getFirstname(), t.getLastname(), t.getRole());	
+EmployeeEntity employeeEntity = new EmployeeEntity(t.getEmployee_id(), t.getUsername(), t.getPassword(), t.getEmail(), t.getPhone(), t.getFirstname(), t.getLastname(), t.getRole(), t.getTimecard());	
 			// Making a new album entity, saving the album entity, then return it at the end of the method.
-			employeeEntity = this.employeeRepository.save(employeeEntity);
+employeeEntity = this.employeeRepository.save(employeeEntity);
 			
 			
 
-			return employeeEntity;
+return employeeEntity;
 		}
 
 

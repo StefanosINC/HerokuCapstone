@@ -13,13 +13,16 @@
 		<h1>Edit Employee Form</h1>
 	
 	
+					<tr>						
+					    <td colspan="2"><input type="hidden" th:field="*{employee_id}" ></td>					
+					</tr>
 	
 					
 					<td><input type="text" name="username" th:field ="*{username}" placeholder ="Username" id="username" required/> </td>
 				
 				</tr>
 				<tr>
-				
+			
 					<td><input type ="password"  name="password"th:field ="*{password}"  placeholder = "Password" id="password" ></td>
 					
 				</tr>

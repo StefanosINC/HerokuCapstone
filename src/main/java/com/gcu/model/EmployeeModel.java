@@ -1,5 +1,7 @@
 package com.gcu.model;
 
+import java.util.List;
+
 public class EmployeeModel {
 
 	private String employee_id;
@@ -13,11 +15,14 @@ public class EmployeeModel {
 	private String role;
 	
 	
+	// has a relationship
+	private List<TimeCard> timecard;
+	
 	
 	
 	
 	public EmployeeModel(String employee_id, String username, String password, String email, String phone,
-			String firstname, String lastname, String role) {
+			String firstname, String lastname, String role, List<TimeCard> timecard) {
 		super();
 		this.employee_id = employee_id;
 		this.username = username;
@@ -34,6 +39,16 @@ public class EmployeeModel {
 		
 	}
 	
+
+	public List<TimeCard> getTimecard() {
+		return timecard;
+	}
+
+
+	public void setTimecard(List<TimeCard> timecard) {
+		this.timecard = timecard;
+	}
+
 
 	public String getEmployee_id() {
 		return employee_id;

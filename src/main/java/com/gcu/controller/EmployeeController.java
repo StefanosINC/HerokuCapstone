@@ -138,7 +138,10 @@ public class EmployeeController {
 				EmployeeModel foundAlbum = employeeservice.getEmployeebyID(id);
 		
 				System.out.println(foundAlbum.getUsername());
+				System.out.println(foundAlbum.toString());
 			
+				System.out.println(foundAlbum.getEmployee_id().toString() + " " +  foundAlbum.getUsername() + " " +  foundAlbum.getPassword() + " " +  foundAlbum.getEmail());
+				
 				model.addAttribute("employee", foundAlbum);
 			
 			

@@ -6,27 +6,66 @@ public class TimeCard {
 
 	
 	private String id;
+	private String firstname;
+	private String lastname;
 	private Date punch_in;
 	private Date punch_out;
 	private String comments;
+	private String role;
 	
-	
-	
-	public TimeCard(String id, Date punch_in, Date punch_out, String comments) {
+
+	public TimeCard(String id, String firstname, String lastname, Date punch_in, Date punch_out, String comments,
+			String role) {
 		super();
 		this.id = id;
+		this.firstname = firstname;
+		this.lastname = lastname;
 		this.punch_in = punch_in;
 		this.punch_out = punch_out;
 		this.comments = comments;
-		
-		
-		
-		
-		
-		
+		this.role = role;
 	}
+
+
+
 	public TimeCard() {
 		
+	}
+
+
+
+	public String getFirstname() {
+		return firstname;
+	}
+
+
+
+	public void setFirstname(String firstname) {
+		this.firstname = firstname;
+	}
+
+
+
+	public String getLastname() {
+		return lastname;
+	}
+
+
+
+	public void setLastname(String lastname) {
+		this.lastname = lastname;
+	}
+
+
+
+	public String getRole() {
+		return role;
+	}
+
+
+
+	public void setRole(String role) {
+		this.role = role;
 	}
 
 

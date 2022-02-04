@@ -7,6 +7,8 @@ import org.springframework.web.context.annotation.SessionScope;
 
 import com.gcu.business.EmployeeService;
 import com.gcu.business.EmployeeServiceInterface;
+import com.gcu.business.TimeCardService;
+import com.gcu.business.TimeCardServiceInterface;
 
 @Configuration
 public class SpringConfig {
@@ -19,5 +21,11 @@ public class SpringConfig {
 {
 	        return new EmployeeService();
 	}
-	
+  @Bean  (name="TimeCardService", initMethod="init", destroyMethod="destroy")
+  @SessionScope
+  @Primary
+		public TimeCardServiceInterface create() 
+{
+	        return new TimeCardService();
+	}
 }

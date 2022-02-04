@@ -21,6 +21,8 @@ public class EmployeeModel {
 	
 	
 	
+
+
 	public EmployeeModel(String employee_id, String username, String password, String email, String phone,
 			String firstname, String lastname, String role, List<TimeCard> timecard) {
 		super();
@@ -32,6 +34,7 @@ public class EmployeeModel {
 		this.firstname = firstname;
 		this.lastname = lastname;
 		this.role = role;
+		this.timecard = timecard;
 	}
 
 

@@ -8,6 +8,10 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import com.gcu.model.TimeCard;
 
+/*
+ * 
+ * Entity Class reponsible for the employees
+ */
 @Document(collection="employees")
 public class EmployeeEntity {
 
@@ -30,13 +34,17 @@ public class EmployeeEntity {
 	
 	String role;
 
-	private List<TimeCard> timecard;
+	/*
+	 * 
+	 * Constructors 
+	 */
+	
 	public EmployeeEntity() {
 		
 	}
 
 	public EmployeeEntity(String id, String username, String password, String email, String phone, String firstname,
-			String lastname, String role, List<TimeCard> timecard) {
+			String lastname, String role){
 		super();
 		this.id = id;
 		this.username = username;
@@ -54,14 +62,10 @@ public class EmployeeEntity {
 
 
 
-
-	public List<TimeCard> getTimecard() {
-		return timecard;
-	}
-
-	public void setTimecard(List<TimeCard> timecard) {
-		this.timecard = timecard;
-	}
+/*
+ * 
+ * Getters and Setters
+ */
 
 	public String getId() {
 		return id;

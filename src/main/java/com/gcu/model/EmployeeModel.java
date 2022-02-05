@@ -2,10 +2,12 @@ package com.gcu.model;
 
 import java.util.List;
 
+/*Employee Model Class 
+ * 
+ */
 public class EmployeeModel {
 
 	private String employee_id;
-	
 	private String username;
 	private String password;
 	private String email;
@@ -15,16 +17,16 @@ public class EmployeeModel {
 	private String role;
 	
 	
-	// has a relationship
-	private List<TimeCard> timecard;
 	
 	
 	
 	
 
-
+/*Constructor for the EmployeeModel
+ * 
+ */
 	public EmployeeModel(String employee_id, String username, String password, String email, String phone,
-			String firstname, String lastname, String role, List<TimeCard> timecard) {
+			String firstname, String lastname, String role) {
 		super();
 		this.employee_id = employee_id;
 		this.username = username;
@@ -34,25 +36,18 @@ public class EmployeeModel {
 		this.firstname = firstname;
 		this.lastname = lastname;
 		this.role = role;
-		this.timecard = timecard;
+		
 	}
-
 
 	public EmployeeModel() {
 		
 	}
 	
 
-	public List<TimeCard> getTimecard() {
-		return timecard;
-	}
-
-
-	public void setTimecard(List<TimeCard> timecard) {
-		this.timecard = timecard;
-	}
-
-
+/*
+ * 
+ * Getters and Setters
+ */
 	public String getEmployee_id() {
 		return employee_id;
 	}

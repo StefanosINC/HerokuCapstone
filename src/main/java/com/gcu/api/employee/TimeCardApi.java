@@ -2,6 +2,8 @@ package com.gcu.api.employee;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -32,12 +35,23 @@ public class TimeCardApi {
 	
 	TimeCardService service;
 	
-	
-@RequestMapping(path="/PunchIn")
-	public ResponseEntity<?> CreateTimePunch(@ModelAttribute("punch_in") TimeCard punch_in,TimeCard card){
-		try {
+
+    @PostMapping("/PunchIn") //(value = "punch_in",method = RequestMethod.POST)
+	public ResponseEntity<?> CreateTimePunch(TimeCard card){
+
+    	
+	try {
+			
+		
+			card.getPunch_in().toString();
+			card.getPunch_out().toString();
 			
 			TimeCard Insert = service.Punch_In(card);
+			
+			
+			System.out.println(card.getPunch_in());
+			
+			
 			
 			if(Insert == null ) 
 				return new ResponseEntity<>(HttpStatus.NOT_FOUND);

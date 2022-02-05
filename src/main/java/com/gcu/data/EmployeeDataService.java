@@ -17,7 +17,7 @@ import com.gcu.repository.EmployeeRepository;
 public class EmployeeDataService implements EmployeeDataAccessInterface<EmployeeEntity>{
 
 	
-	// Auto Wire Repository
+	// Auto Wire Repositoryfor Employees
 	@Autowired
 	private EmployeeRepository employeeRepository;
 	
@@ -28,8 +28,10 @@ public class EmployeeDataService implements EmployeeDataAccessInterface<Employee
 
 
 	
-	// Find and All. (Print the entire list of Register users)
 	
+	/*
+	 * Find all the Employees in the list and return them. 
+	 */
 	@Override
 	public List<EmployeeEntity> findAll() 
 	{
@@ -48,6 +50,10 @@ public class EmployeeDataService implements EmployeeDataAccessInterface<Employee
 		
 	}
 	
+	/*
+	 * 
+	 * Login method for Employees
+	 */
 	@Override
 	public boolean login(EmployeeModel user) 
 	{
@@ -107,7 +113,7 @@ public EmployeeEntity create(EmployeeModel t) {
 	// TODO Auto-generated method stub
 	EmployeeEntity newEmployee = null;
 
-	newEmployee = new EmployeeEntity(t.getEmployee_id(), t.getUsername(), t.getPassword(), t.getEmail(), t.getPhone(), t.getFirstname(), t.getLastname(), t.getRole(), t.getTimecard());			
+	newEmployee = new EmployeeEntity(t.getEmployee_id(), t.getUsername(), t.getPassword(), t.getEmail(), t.getPhone(), t.getFirstname(), t.getLastname(), t.getRole());			
 	 
 	newEmployee = this.employeeRepository.save(newEmployee);
 	
@@ -125,7 +131,7 @@ public EmployeeEntity create(EmployeeModel t) {
 @Override
 public EmployeeEntity update(EmployeeModel t) {
 	// Make a new album entity
-EmployeeEntity employeeEntity = new EmployeeEntity(t.getEmployee_id(), t.getUsername(), t.getPassword(), t.getEmail(), t.getPhone(), t.getFirstname(), t.getLastname(), t.getRole(), t.getTimecard());	
+EmployeeEntity employeeEntity = new EmployeeEntity(t.getEmployee_id(), t.getUsername(), t.getPassword(), t.getEmail(), t.getPhone(), t.getFirstname(), t.getLastname(), t.getRole());	
 			// Making a new album entity, saving the album entity, then return it at the end of the method.
 employeeEntity = this.employeeRepository.save(employeeEntity);
 			

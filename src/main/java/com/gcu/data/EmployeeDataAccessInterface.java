@@ -8,7 +8,10 @@ import com.gcu.data.entity.EmployeeEntity;
 import com.gcu.model.EmployeeModel;
 
 
-
+/*
+ * 
+ * Interface for the Employee Data service methods!
+ */
 public interface EmployeeDataAccessInterface <T> {
 
 	public boolean login(EmployeeModel user);

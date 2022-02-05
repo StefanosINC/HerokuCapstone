@@ -1,5 +1,9 @@
 package com.gcu.data;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,14 +35,40 @@ public class TimeCardDataService implements TimeCardDataAcessInterface<TimeCardE
 		return null;
 	}
 
+	
+	// to translate the punchand punch out to strings  away from dates
 	@Override
 	public TimeCardEntity Punch_In(TimeCard card) {
 	
 		TimeCardEntity Punch_In = null;
 		
+		// define date ->  String
+		
 	
-		Punch_In = new TimeCardEntity(card.getId(), card.getFirstname(), card.getLastname(),  card.getPunch_in(), card.getPunch_out(),card.getComments(), card.getRole());
+		
+		// grab a parameter like punchin. 
+		
+		// set it = to card.getPunchIn()
+		
+		LocalDateTime Time = LocalDateTime.now();
+		
+		Time.toString();
+		System.out.println(Time.toString() + " This is the punch in string");
+		
+		
+		card.setPunch_in(Time);
+		card.setPunch_out(Time);
+//		Punch_In = new TimeCardEntity(card.getId(), card.getFirstname(), card.getLastname(),  card.getPunch_in(), card.getPunch_out(),card.getComments(), card.getRole());
+//		
+//		Punch_In.setPunch_in(Time);
+//		Punch_In = this.timecardRepository.save(Punch_In);
+Punch_In = new TimeCardEntity(card.getId(), card.getFirstname(), card.getLastname(), card.getComments(), card.getRole());
+		
+		//Punch_In.setPunch_in(Time);
 		Punch_In = this.timecardRepository.save(Punch_In);
+		
+		
+		
 		return Punch_In;
 	}
 

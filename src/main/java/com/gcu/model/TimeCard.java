@@ -1,5 +1,6 @@
 package com.gcu.model;
 
+import java.time.Instant;
 import java.time.LocalDateTime;
 import java.util.Date;
 
@@ -16,16 +17,18 @@ public class TimeCard {
 	
 	
 	
-	private LocalDateTime punch_in;
-	private LocalDateTime punch_out;
+	private Date punch_in = Date.from(Instant.now());
+	private Date punch_out = Date.from(Instant.now());
+	
 	private String comments;
 	private String role;
 	
 
 
 
-	public TimeCard(String id, String firstname, String lastname, LocalDateTime punch_in, LocalDateTime punch_out,
-			String comments, String role) {
+
+	public TimeCard(String id, String firstname, String lastname, Date punch_in, Date punch_out, String comments,
+			String role) {
 		super();
 		this.id = id;
 		this.firstname = firstname;
@@ -91,25 +94,25 @@ public class TimeCard {
 
 
 
-	public LocalDateTime getPunch_in() {
+	public Date getPunch_in() {
 		return punch_in;
 	}
 
 
 
-	public void setPunch_in(LocalDateTime punch_in) {
+	public void setPunch_in(Date punch_in) {
 		this.punch_in = punch_in;
 	}
 
 
 
-	public LocalDateTime getPunch_out() {
+	public Date getPunch_out() {
 		return punch_out;
 	}
 
 
 
-	public void setPunch_out(LocalDateTime punch_out) {
+	public void setPunch_out(Date punch_out) {
 		this.punch_out = punch_out;
 	}
 
@@ -136,6 +139,10 @@ public class TimeCard {
 	public void setRole(String role) {
 		this.role = role;
 	}
+
+
+
+	
 
 
 

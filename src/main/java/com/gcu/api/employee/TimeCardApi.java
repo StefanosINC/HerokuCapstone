@@ -2,8 +2,10 @@ package com.gcu.api.employee;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,16 +38,16 @@ public class TimeCardApi {
 	TimeCardService service;
 	
 
-    @PostMapping("/PunchIn") //(value = "punch_in",method = RequestMethod.POST)
+    @PostMapping(path="/Punch")//(value = "punch_in",method = RequestMethod.POST)
 	public ResponseEntity<?> CreateTimePunch(TimeCard card){
 
     	
 	try {
-			
+	
 		
-			card.getPunch_in().toString();
-			card.getPunch_out().toString();
-			
+	
+			card.setPunch_in(Date.from(Instant.now()));
+			card.setPunch_out(Date.from(Instant.now()));
 			TimeCard Insert = service.Punch_In(card);
 			
 			

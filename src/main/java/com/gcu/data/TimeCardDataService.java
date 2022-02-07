@@ -42,27 +42,9 @@ public class TimeCardDataService implements TimeCardDataAcessInterface<TimeCardE
 	
 		TimeCardEntity Punch_In = null;
 		
-		// define date ->  String
-		
-	
-		
-		// grab a parameter like punchin. 
-		
-		// set it = to card.getPunchIn()
-		
-		LocalDateTime Time = LocalDateTime.now();
-		
-		Time.toString();
-		System.out.println(Time.toString() + " This is the punch in string");
 		
 		
-		card.setPunch_in(Time);
-		card.setPunch_out(Time);
-//		Punch_In = new TimeCardEntity(card.getId(), card.getFirstname(), card.getLastname(),  card.getPunch_in(), card.getPunch_out(),card.getComments(), card.getRole());
-//		
-//		Punch_In.setPunch_in(Time);
-//		Punch_In = this.timecardRepository.save(Punch_In);
-Punch_In = new TimeCardEntity(card.getId(), card.getFirstname(), card.getLastname(), card.getComments(), card.getRole());
+		Punch_In = new TimeCardEntity(card.getId(), card.getFirstname(), card.getLastname(), card.getPunch_in(), card.getPunch_out(), card.getComments(), card.getRole());
 		
 		//Punch_In.setPunch_in(Time);
 		Punch_In = this.timecardRepository.save(Punch_In);

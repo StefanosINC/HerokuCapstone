@@ -132,7 +132,7 @@ public ResponseEntity<?> edit(@PathVariable("id") String id, EmployeeModel emplo
 }	
 
 // Delete API
-@GetMapping(path="/deleteEmployee/{id}")
+@RequestMapping(path="/deleteEmployee/{id}")
 public ResponseEntity<?> DeleteByID(@PathVariable("id") String id){
 	try {
 		

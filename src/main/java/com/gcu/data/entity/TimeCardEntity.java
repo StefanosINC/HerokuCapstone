@@ -1,5 +1,6 @@
 package com.gcu.data.entity;
 
+import java.time.Instant;
 import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
@@ -20,8 +21,9 @@ public class TimeCardEntity {
 	String firstname;
 	String lastname;
 	
-	private LocalDateTime punch_in;
-	private LocalDateTime punch_out;
+	private Date punch_in = Date.from(Instant.now());
+	
+	private Date punch_out = Date.from(Instant.now());
 	private String comments;
 	String role;
 	
@@ -36,8 +38,10 @@ public class TimeCardEntity {
 
 
 
-	public TimeCardEntity(String id, String firstname, String lastname, LocalDateTime punch_in, LocalDateTime punch_out,
-			String comments, String role) {
+
+
+	public TimeCardEntity(String id, String firstname, String lastname, Date punch_in, Date punch_out, String comments,
+			String role) {
 		super();
 		this.id = id;
 		this.firstname = firstname;
@@ -47,6 +51,8 @@ public class TimeCardEntity {
 		this.comments = comments;
 		this.role = role;
 	}
+
+
 
 
 
@@ -67,9 +73,13 @@ public class TimeCardEntity {
 
 
 
+
+
 	public String getId() {
 		return id;
 	}
+
+
 
 
 
@@ -85,9 +95,13 @@ public class TimeCardEntity {
 
 
 
+
+
 	public String getFirstname() {
 		return firstname;
 	}
+
+
 
 
 
@@ -103,9 +117,13 @@ public class TimeCardEntity {
 
 
 
+
+
 	public String getLastname() {
 		return lastname;
 	}
+
+
 
 
 
@@ -121,7 +139,9 @@ public class TimeCardEntity {
 
 
 
-	public LocalDateTime getPunch_in() {
+
+
+	public Date getPunch_in() {
 		return punch_in;
 	}
 
@@ -130,7 +150,9 @@ public class TimeCardEntity {
 
 
 
-	public void setPunch_in(LocalDateTime punch_in) {
+
+
+	public void setPunch_in(Date punch_in) {
 		this.punch_in = punch_in;
 	}
 
@@ -139,7 +161,9 @@ public class TimeCardEntity {
 
 
 
-	public LocalDateTime getPunch_out() {
+
+
+	public Date getPunch_out() {
 		return punch_out;
 	}
 
@@ -148,9 +172,13 @@ public class TimeCardEntity {
 
 
 
-	public void setPunch_out(LocalDateTime punch_out) {
+
+
+	public void setPunch_out(Date punch_out) {
 		this.punch_out = punch_out;
 	}
+
+
 
 
 
@@ -166,9 +194,13 @@ public class TimeCardEntity {
 
 
 
+
+
 	public void setComments(String comments) {
 		this.comments = comments;
 	}
+
+
 
 
 
@@ -184,11 +216,18 @@ public class TimeCardEntity {
 
 
 
+
+
 	public void setRole(String role) {
 		this.role = role;
 	}
 
 
+
+
+
+
+	
 
 
 

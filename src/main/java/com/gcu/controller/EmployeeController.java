@@ -17,9 +17,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.gcu.business.EmployeeServiceInterface;
+import com.gcu.business.TimeCardServiceInterface;
 import com.gcu.data.EmployeeDataAccessInterface;
+import com.gcu.data.TimeCardDataService;
 import com.gcu.data.entity.EmployeeEntity;
+import com.gcu.data.entity.TimeCardEntity;
 import com.gcu.model.EmployeeModel;
+import com.gcu.model.TimeCard;
 import com.gcu.repository.EmployeeRepository;
 
 
@@ -34,7 +38,8 @@ public class EmployeeController {
 	@Autowired
 	private EmployeeServiceInterface employeeservice;
 	
-	
+	@Autowired 
+	private TimeCardServiceInterface timeservice;
 	
 	@Autowired
 	private EmployeeDataAccessInterface dataservice;
@@ -96,8 +101,10 @@ public class EmployeeController {
 	
 		}
 	@GetMapping("/Cards")
-	public String displayCards(Model model) {
+	public String displayCards(TimeCard model) {
 		
+		TimeCard test = timeservice.Punch_In(model);
+		System.out.println(test.toString());
 		
 		return "EmployeeCards.html";
 	}

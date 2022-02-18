@@ -27,6 +27,8 @@ import com.gcu.data.EmployeeDataService;
 import com.gcu.data.TimeCardDataService;
 import com.gcu.model.EmployeeModel;
 import com.gcu.model.TimeCard;
+
+import groovyjarjarantlr.debug.Event;
 @RestController
 @RequestMapping("/service1")
 public class TimeCardApi {
@@ -43,18 +45,17 @@ public class TimeCardApi {
 
     	
 	try {
-	
+		LocalDateTime time = LocalDateTime.now();
+		
+		card.setPunch_in(time);
+		card.setPunch_out(time);
 		
 	
-			card.setPunch_in(Date.from(Instant.now()));
-			card.setPunch_out(Date.from(Instant.now()));
+		
 			TimeCard Insert = service.Punch_In(card);
 			
 			
-			System.out.println(card.getPunch_in());
-			
-			
-			
+		
 			if(Insert == null ) 
 				return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 				else 
@@ -64,7 +65,11 @@ public class TimeCardApi {
 			
 		}
 		catch(Exception e) {
+			
+		//	System.out.println(card.getPunch_in().toString());
+		//	System.out.println(card.getPunch_out().toString());
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		
 		
 		}
 }

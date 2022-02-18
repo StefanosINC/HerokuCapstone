@@ -16,9 +16,8 @@ public class TimeCard {
 	private String lastname;
 	
 	
-	
-	private Date punch_in = Date.from(Instant.now());
-	private Date punch_out = Date.from(Instant.now());
+	private LocalDateTime punch_in;
+	private LocalDateTime punch_out;
 	
 	private String comments;
 	private String role;
@@ -27,8 +26,9 @@ public class TimeCard {
 
 
 
-	public TimeCard(String id, String firstname, String lastname, Date punch_in, Date punch_out, String comments,
-			String role) {
+
+	public TimeCard(String id, String firstname, String lastname, LocalDateTime punch_in, LocalDateTime punch_out,
+			String comments, String role) {
 		super();
 		this.id = id;
 		this.firstname = firstname;
@@ -94,25 +94,28 @@ public class TimeCard {
 
 
 
-	public Date getPunch_in() {
+
+
+
+	public LocalDateTime getPunch_in() {
 		return punch_in;
 	}
 
 
 
-	public void setPunch_in(Date punch_in) {
+	public void setPunch_in(LocalDateTime punch_in) {
 		this.punch_in = punch_in;
 	}
 
 
 
-	public Date getPunch_out() {
+	public LocalDateTime getPunch_out() {
 		return punch_out;
 	}
 
 
 
-	public void setPunch_out(Date punch_out) {
+	public void setPunch_out(LocalDateTime punch_out) {
 		this.punch_out = punch_out;
 	}
 

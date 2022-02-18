@@ -21,27 +21,24 @@ public class TimeCardEntity {
 	String firstname;
 	String lastname;
 	
-	private Date punch_in = Date.from(Instant.now());
+	LocalDateTime punch_in;
 	
-	private Date punch_out = Date.from(Instant.now());
-	private String comments;
+	LocalDateTime punch_out;
+	 String comments;
 	String role;
 	
 
+	
+	
+	
 	
 	public TimeCardEntity() {
 		
 	}
 
 
-
-
-
-
-
-
-	public TimeCardEntity(String id, String firstname, String lastname, Date punch_in, Date punch_out, String comments,
-			String role) {
+	public TimeCardEntity(String id, String firstname, String lastname, LocalDateTime punch_in, LocalDateTime punch_out,
+			String comments, String role) {
 		super();
 		this.id = id;
 		this.firstname = firstname;
@@ -52,38 +49,9 @@ public class TimeCardEntity {
 		this.role = role;
 	}
 
-
-
-
-
-
-
-
-	public TimeCardEntity(String id, String firstname, String lastname, String comments, String role) {
-		super();
-		this.id = id;
-		this.firstname = firstname;
-		this.lastname = lastname;
-		this.comments = comments;
-		this.role = role;
-	}
-
-
-
-
-
-
-
-
 	public String getId() {
 		return id;
 	}
-
-
-
-
-
-
 
 
 	public void setId(String id) {
@@ -141,7 +109,14 @@ public class TimeCardEntity {
 
 
 
-	public Date getPunch_in() {
+	
+
+
+
+
+
+
+	public LocalDateTime getPunch_in() {
 		return punch_in;
 	}
 
@@ -152,7 +127,12 @@ public class TimeCardEntity {
 
 
 
-	public void setPunch_in(Date punch_in) {
+
+
+
+
+
+	public void setPunch_in(LocalDateTime punch_in) {
 		this.punch_in = punch_in;
 	}
 
@@ -163,7 +143,12 @@ public class TimeCardEntity {
 
 
 
-	public Date getPunch_out() {
+
+
+
+
+
+	public LocalDateTime getPunch_out() {
 		return punch_out;
 	}
 
@@ -174,9 +159,19 @@ public class TimeCardEntity {
 
 
 
-	public void setPunch_out(Date punch_out) {
+
+
+
+
+
+	public void setPunch_out(LocalDateTime punch_out) {
 		this.punch_out = punch_out;
 	}
+
+
+
+
+
 
 
 
@@ -220,6 +215,13 @@ public class TimeCardEntity {
 
 	public void setRole(String role) {
 		this.role = role;
+	}
+
+
+	@Override
+	public String toString() {
+		return "TimeCardEntity [id=" + id + ", firstname=" + firstname + ", lastname=" + lastname + ", punch_in="
+				+ punch_in + ", punch_out=" + punch_out + ", comments=" + comments + ", role=" + role + "]";
 	}
 
 

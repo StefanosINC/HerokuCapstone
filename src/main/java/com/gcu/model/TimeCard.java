@@ -8,27 +8,28 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonFormat.Shape;
 
 
+/*
+ * This is the TimeCard Model Class
+ */
 public class TimeCard {
 
-	
+	/*
+	 * Parameters for the class.
+	 */
 	private String id;
 	private String firstname;
 	private String lastname;
-	
-	
 	private LocalDateTime punch_in;
 	private LocalDateTime punch_out;
-	
 	private String comments;
 	private String role;
 	
-
-
-
-
-
-	public TimeCard(String id, String firstname, String lastname, LocalDateTime punch_in, LocalDateTime punch_out,
-			String comments, String role) {
+	
+/*
+ * Constructor for the TimeCard
+ */
+	public TimeCard(String id, String firstname, String lastname, LocalDateTime punch_in, LocalDateTime punch_out, String comments,
+			String role) {
 		super();
 		this.id = id;
 		this.firstname = firstname;
@@ -40,24 +41,18 @@ public class TimeCard {
 	}
 
 
-
-	public TimeCard(String id, String firstname, String lastname, String comments, String role) {
-		super();
-		this.id = id;
-		this.firstname = firstname;
-		this.lastname = lastname;
-		this.comments = comments;
-		this.role = role;
-	}
-
-
-
+/*
+ * Default Constructor
+ */
 	public TimeCard() {
 		
 	}
 
 
-
+/*
+ * 
+ * Getters and Setters for the TimeCard Class
+ */
 	public String getId() {
 		return id;
 	}
@@ -97,10 +92,13 @@ public class TimeCard {
 
 
 
+
+
+
+
 	public LocalDateTime getPunch_in() {
 		return punch_in;
 	}
-
 
 
 	public void setPunch_in(LocalDateTime punch_in) {
@@ -108,17 +106,14 @@ public class TimeCard {
 	}
 
 
-
 	public LocalDateTime getPunch_out() {
 		return punch_out;
 	}
 
 
-
 	public void setPunch_out(LocalDateTime punch_out) {
 		this.punch_out = punch_out;
 	}
-
 
 
 	public String getComments() {
@@ -141,6 +136,14 @@ public class TimeCard {
 
 	public void setRole(String role) {
 		this.role = role;
+	}
+
+
+
+	@Override
+	public String toString() {
+		return "TimeCard [id=" + id + ", firstname=" + firstname + ", lastname=" + lastname + ", punch_in=" + punch_in
+				+ ", punch_out=" + punch_out + ", comments=" + comments + ", role=" + role + "]";
 	}
 
 

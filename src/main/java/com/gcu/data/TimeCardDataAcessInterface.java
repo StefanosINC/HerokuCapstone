@@ -5,6 +5,9 @@ import java.util.List;
 import com.gcu.data.entity.TimeCardEntity;
 import com.gcu.model.TimeCard;
 
+/*
+ * Interface for the TimeCardDataService.
+ */
 public interface TimeCardDataAcessInterface <T>{
 
 	public List<TimeCardEntity> FindAllTimePunches();
@@ -18,6 +21,7 @@ public interface TimeCardDataAcessInterface <T>{
 	public TimeCardEntity UpdateTimeCard(TimeCard punch_in);
 	
 	public void DeleteTimePunchById(String id);
+	
 	
 	
 }

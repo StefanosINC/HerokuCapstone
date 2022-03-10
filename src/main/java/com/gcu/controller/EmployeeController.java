@@ -51,6 +51,8 @@ public class EmployeeController {
 	public String display(Model model) {
 		model.addAttribute("title", "");
 		return "index";
+		
+	
 	}
 	
 
@@ -101,12 +103,30 @@ public class EmployeeController {
 	
 		}
 	@GetMapping("/Cards")
-	public String displayCards(TimeCard model) {
+	public String displayCards(TimeCard model, Model model1) {
+		
+		
 		
 		TimeCard test = timeservice.Punch_In(model);
-		System.out.println(test.toString());
+		
+		
+		System.out.println("BELOW IS THE TIME PUNCH IN TEST -----");
+		System.out.println(test.getPunch_in().toString());
+		
+		
+		
+		
+		List<TimeCard> employeeList = timeservice.FindAllTimePunches();
+		
+		model1.addAttribute("employeeList", employeeList);
+		
+		System.out.println(employeeList.toString());
 		
 		return "EmployeeCards.html";
+		
+		
+		
+		
 	}
 	
 	

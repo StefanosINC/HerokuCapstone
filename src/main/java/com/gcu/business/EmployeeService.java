@@ -5,12 +5,12 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
+//import org.springframework.security.core.GrantedAuthority;
+//import org.springframework.security.core.authority.SimpleGrantedAuthority;
+//import org.springframework.security.core.userdetails.UserDetails;
+//import org.springframework.security.core.userdetails.UserDetailsService;
+//import org.springframework.security.core.userdetails.User;
+//import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -23,7 +23,7 @@ import com.gcu.model.EmployeeModel;
 
 
 @Service
-public class EmployeeService implements EmployeeServiceInterface, UserDetailsService{
+public class EmployeeService implements EmployeeServiceInterface{
 
 	@Autowired
 	EmployeeDataService service;
@@ -58,29 +58,29 @@ public class EmployeeService implements EmployeeServiceInterface, UserDetailsSer
 			return userdomain;	
 		}
 	
-	
-	@Override
-	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException
-	{
-		System.out.println("line 60");
-		// Make a UserEntity and call the data service method with the given username parameter
-		EmployeeEntity user = service.findByUsername(username);
-		if(user != null)
-		{
-			System.out.println("line 66");
-			List<GrantedAuthority> authorites = new ArrayList<GrantedAuthority>();
-			authorites.add(new SimpleGrantedAuthority("USER"));
-			// User comes from UserDetailsService
-			System.out.println("line 70");
-			return new User(user.getUsername(), user.getPassword(), authorites);
-			
-		}
-		else
-		{
-			System.out.println("75");
-			throw new UsernameNotFoundException("username not found");
-		}
-	}
+//	
+//	@Override
+//	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException
+//	{
+//		System.out.println("line 60");
+//		// Make a UserEntity and call the data service method with the given username parameter
+//		EmployeeEntity user = service.findByUsername(username);
+//		if(user != null)
+//		{
+//			System.out.println("line 66");
+//			List<GrantedAuthority> authorites = new ArrayList<GrantedAuthority>();
+//			authorites.add(new SimpleGrantedAuthority("USER"));
+//			// User comes from UserDetailsService
+//			System.out.println("line 70");
+//			return new User(user.getUsername(), user.getPassword(), authorites);
+//			
+//		}
+//		else
+//		{
+//			System.out.println("75");
+//			throw new UsernameNotFoundException("username not found");
+//		}
+//	}
 
 
 	@Override

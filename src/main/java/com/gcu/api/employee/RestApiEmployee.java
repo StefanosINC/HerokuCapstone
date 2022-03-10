@@ -21,7 +21,6 @@ import com.gcu.model.EmployeeModel;
 import com.gcu.repository.EmployeeRepository;
 
 @RestController
-@RequestMapping("/service")
 public class RestApiEmployee {
 
 	
@@ -104,24 +103,30 @@ public ResponseEntity<?> CreateEmployee(EmployeeModel employee){
 	}
 }
 
-
-@PostMapping(path="/updateEmployee/{id}")
-public ResponseEntity<?> edit(@PathVariable("id") String id, EmployeeModel employee)
+// @PathVariable("id") String id,
+@PostMapping(path="/updateEmployee")
+public ResponseEntity<?> edit ( EmployeeModel employee)
 {
+	//EmployeeModel EmployeeID = employeeservice.getEmployeebyID(id);
+	 
+	EmployeeModel updatedEmployee = employeeservice.update(employee);
+	
+	updatedEmployee.setEmployee_id(employee.getEmployee_id());
+	updatedEmployee.setUsername(employee.getUsername());
+	updatedEmployee.setPassword(employee.getPassword());
+	updatedEmployee.setFirstname(employee.getFirstname());
+	updatedEmployee.setLastname(employee.getLastname());
+	updatedEmployee.setPhone(employee.getPhone());
+	updatedEmployee.setRole(employee.getRole());
 
+	
 	try {
 		
-		EmployeeModel UpdateEmployee = employeeservice.getEmployeebyID(id);
-		
-		employeeservice.update(employee);
-		
-		System.out.println(UpdateEmployee);
-		
-		if(UpdateEmployee == null ) 
+		if(updatedEmployee == null ) 
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 			else 
 				
-				return new ResponseEntity<>(UpdateEmployee, HttpStatus.OK);		
+				return new ResponseEntity<>(updatedEmployee, HttpStatus.OK);		
 		
 		
 	}
@@ -129,7 +134,8 @@ public ResponseEntity<?> edit(@PathVariable("id") String id, EmployeeModel emplo
 		return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 	
 	}
-}	
+	
+}
 
 // Delete API
 @RequestMapping(path="/deleteEmployee/{id}")
@@ -152,5 +158,15 @@ public ResponseEntity<?> DeleteByID(@PathVariable("id") String id){
 	
 	}
 }
+
+
+
+
+
+
+
+
+
+
 }
 

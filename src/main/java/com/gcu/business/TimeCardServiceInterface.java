@@ -1,5 +1,7 @@
 package com.gcu.business;
 
+import java.util.List;
+
 import com.gcu.model.TimeCard;
 
 public interface TimeCardServiceInterface {
@@ -9,7 +11,14 @@ public interface TimeCardServiceInterface {
 	
 	public void destroy();
 	
-	public TimeCard FindAllTimePunches();
 	
 	public TimeCard Punch_In(TimeCard card);
+	
+List<TimeCard>FindAllTimePunches();
+
+public TimeCard getTimeCardID(String id);
+
+
+public void Delete(String id);
+
 }

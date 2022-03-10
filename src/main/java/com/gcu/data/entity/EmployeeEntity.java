@@ -9,13 +9,17 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import com.gcu.model.TimeCard;
 
 /*
+ * Employee Entity Class, This Class implements the Entity class that will communicate to the Database
+ * @Param - @Document Collection=employees. This class will talk directly to the employees document
  * 
- * Entity Class reponsible for the employees
  */
+
 @Document(collection="employees")
 public class EmployeeEntity {
 
-	
+	/*
+	 * Parameters for the Employee Entity 
+	 */
 	@Id
 	String id;
 	
@@ -35,13 +39,16 @@ public class EmployeeEntity {
 	String role;
 
 	/*
-	 * 
-	 * Constructors 
+	 * Default Constructor
 	 */
 	
 	public EmployeeEntity() {
 		
 	}
+	
+	/*
+	 * Constructor for Employee Entity
+	 */
 
 	public EmployeeEntity(String id, String username, String password, String email, String phone, String firstname,
 			String lastname, String role){

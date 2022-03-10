@@ -2,8 +2,8 @@ package com.gcu.model;
 
 import java.util.List;
 
-/*Employee Model Class 
- * 
+/*
+ * Employee Model Class 
  */
 public class EmployeeModel {
 
@@ -22,8 +22,8 @@ public class EmployeeModel {
 	
 	
 
-/*Constructor for the EmployeeModel
- * 
+/*
+ * Constructor for the EmployeeModel
  */
 	public EmployeeModel(String employee_id, String username, String password, String email, String phone,
 			String firstname, String lastname, String role) {
@@ -39,6 +39,9 @@ public class EmployeeModel {
 		
 	}
 
+	/*
+	 * Default Constructor
+	 */
 	public EmployeeModel() {
 		
 	}

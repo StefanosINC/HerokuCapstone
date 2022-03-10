@@ -1,42 +1,47 @@
 package com.gcu.data.entity;
-
-import java.time.Instant;
 import java.time.LocalDateTime;
-import java.util.Date;
-import java.util.List;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.format.annotation.DateTimeFormat;
 
-import com.gcu.model.TimeCard;
-
+/*
+ * TimeCard Entity Class, This Class implements the Entity class that will communicate to the Database
+ * @Param - @Document Collection= Timecard. This class will talk directly to the timecard document
+ * 
+ */
 @Document(collection="timecard")
 public class TimeCardEntity {
 
+	/*
+	 * Entity Parameters
+	 */
+	
 	@Id
 	String id;
 	@Indexed(unique=true)
 	String firstname;
 	String lastname;
-	
 	LocalDateTime punch_in;
-	
 	LocalDateTime punch_out;
-	 String comments;
+	String comments;
 	String role;
 	
 
 	
 	
 	
-	
+	/*
+	 * Default Constructor
+	 */
 	public TimeCardEntity() {
 		
 	}
 
 
+	/*
+	 * Constructor for the TimeCard Entity
+	 */
 	public TimeCardEntity(String id, String firstname, String lastname, LocalDateTime punch_in, LocalDateTime punch_out,
 			String comments, String role) {
 		super();
@@ -49,6 +54,10 @@ public class TimeCardEntity {
 		this.role = role;
 	}
 
+	
+/*
+ * Getters and Setters
+ */
 	public String getId() {
 		return id;
 	}
@@ -59,20 +68,9 @@ public class TimeCardEntity {
 	}
 
 
-
-
-
-
-
-
 	public String getFirstname() {
 		return firstname;
 	}
-
-
-
-
-
 
 
 
@@ -82,20 +80,9 @@ public class TimeCardEntity {
 
 
 
-
-
-
-
-
 	public String getLastname() {
 		return lastname;
 	}
-
-
-
-
-
-
 
 
 	public void setLastname(String lastname) {
@@ -106,30 +93,9 @@ public class TimeCardEntity {
 
 
 
-
-
-
-	
-
-
-
-
-
-
 	public LocalDateTime getPunch_in() {
 		return punch_in;
 	}
-
-
-
-
-
-
-
-
-
-
-
 
 
 	public void setPunch_in(LocalDateTime punch_in) {
@@ -137,31 +103,9 @@ public class TimeCardEntity {
 	}
 
 
-
-
-
-
-
-
-
-
-
-
-
 	public LocalDateTime getPunch_out() {
 		return punch_out;
 	}
-
-
-
-
-
-
-
-
-
-
-
 
 
 	public void setPunch_out(LocalDateTime punch_out) {
@@ -169,27 +113,9 @@ public class TimeCardEntity {
 	}
 
 
-
-
-
-
-
-
-
-
-
-
-
 	public String getComments() {
 		return comments;
 	}
-
-
-
-
-
-
-
 
 	public void setComments(String comments) {
 		this.comments = comments;
@@ -197,19 +123,9 @@ public class TimeCardEntity {
 
 
 
-
-
-
-
-
 	public String getRole() {
 		return role;
 	}
-
-
-
-
-
 
 
 
@@ -223,14 +139,6 @@ public class TimeCardEntity {
 		return "TimeCardEntity [id=" + id + ", firstname=" + firstname + ", lastname=" + lastname + ", punch_in="
 				+ punch_in + ", punch_out=" + punch_out + ", comments=" + comments + ", role=" + role + "]";
 	}
-
-
-
-
-
-
-	
-
 
 
 	

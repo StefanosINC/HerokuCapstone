@@ -12,19 +12,20 @@ import com.gcu.data.entity.EmployeeEntity;
 import com.gcu.model.EmployeeModel;
 
 
-
+/*
+ * Employee Service Interface that implements all the employee Methods
+ * This calls on the spring beans Init and Destory
+ * This also calls on the CRUD fucntionality methods and Login. 
+ */
 public interface EmployeeServiceInterface {
+	
+	
 	public void init();
 	public void destroy();
 	public boolean login(EmployeeModel user);
-	//UserDetails loadUserByUsername(String username) throws UsernameNotFoundException;
-	public String doLogin(EmployeeModel credentialsModel, BindingResult bindingResult, Model model);
 	List<EmployeeModel> findAll();
 	public EmployeeModel insertEmployee(EmployeeModel user);
-  public EmployeeModel getEmployeebyID(String id);
-	
-	
+	public EmployeeModel getEmployeebyID(String id);
 	public EmployeeModel update(EmployeeModel t);
-	
 	public void Delete(String id);
 }

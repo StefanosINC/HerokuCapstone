@@ -10,10 +10,16 @@ import com.gcu.business.EmployeeServiceInterface;
 import com.gcu.business.TimeCardService;
 import com.gcu.business.TimeCardServiceInterface;
 
+/*
+ * Spring Config class that is going to Create the Employee Service and the TimeCard Service Beans
+ * @Configuration
+ */
 @Configuration
 public class SpringConfig {
-	
-//	// This Spring Bean will handle register and login logic
+
+	/*
+	 * Spring bean object Employee Service ( init , destroy)
+	 */
   @Bean  (name="EmployeeService", initMethod="init", destroyMethod="destroy")
   @SessionScope
   @Primary
@@ -21,6 +27,11 @@ public class SpringConfig {
 {
 	        return new EmployeeService();
 	}
+  
+  /*
+   * Spring bean object TimeCard Service ( init , destroy)
+   * 
+   */
   @Bean  (name="TimeCardService", initMethod="init", destroyMethod="destroy")
   @SessionScope
   @Primary

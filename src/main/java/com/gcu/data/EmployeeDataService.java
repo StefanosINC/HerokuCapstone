@@ -13,15 +13,26 @@ import com.gcu.model.EmployeeModel;
 
 import com.gcu.repository.EmployeeRepository;
 
+
+/*
+ * EmployeeData Service that Implements the EmployeeDataAccessInterface Entity
+ * This class is directly responsible for creating the logic that connects to the database.
+ * This is responsible for the CRUD operations and Login.
+ */
 @Service
 public class EmployeeDataService implements EmployeeDataAccessInterface<EmployeeEntity>{
 
 	
-	// Auto Wire Repositoryfor Employees
+	/*
+	 * This is the employee repository instance and is autowired to refer  it to gain acess to its referred methods
+	 */
 	@Autowired
 	private EmployeeRepository employeeRepository;
 	
 	
+	/*
+	 * This is the EmployeeDataService constructor.
+	 */
 	public EmployeeDataService(EmployeeRepository employeeRepository) {
 		this.employeeRepository = employeeRepository;
 	}
@@ -30,7 +41,9 @@ public class EmployeeDataService implements EmployeeDataAccessInterface<Employee
 	
 	
 	/*
-	 * Find all the Employees in the list and return them. 
+	 * Find all Employees This Method loops thorugh the EmployeeEntity and creates a users List object
+	 * Loop through the EmployeeList and loop it through the Employee repository and find all. 
+	 * Add each of the parameteres to the list and return it 
 	 */
 	@Override
 	public List<EmployeeEntity> findAll() 
@@ -52,7 +65,8 @@ public class EmployeeDataService implements EmployeeDataAccessInterface<Employee
 	
 	/*
 	 * 
-	 * Login method for Employees
+	 * This is responsible for the login for a user. This method loops through the employee entity and finds all the users.
+	 * It then compares the returned users from the entity list to the model that was inserted and validates the login
 	 */
 	@Override
 	public boolean login(EmployeeModel user) 
@@ -83,31 +97,13 @@ public class EmployeeDataService implements EmployeeDataAccessInterface<Employee
 		return false;
 	}
 
-	@Override
-	public List<EmployeeEntity> FindAllEmployees() {
-		
-		List<EmployeeEntity> employees = new ArrayList<EmployeeEntity>();
-		try {
-			Iterable<EmployeeEntity> employeesIterable = employeeRepository.findAll();
-			employees = new ArrayList<EmployeeEntity>();
-			employeesIterable.forEach(employees:: add);
-		}
-		catch(Exception e) {
-			e.printStackTrace();
-			
-		}
-		return employees;
-	}
-
-
-@Override
-public EmployeeEntity findByUsername(String username) 
-{		
-	return employeeRepository.findByUsername(username);
-}
-
-
-
+	 /* Create a Employee for the EmployeeEntity
+	 * Set the newEmployee object to null, 
+	 * Set the object to equal a new EmployeeEntity Card object.
+	 * Then Save the Object in to the mongodb by refering to the save repository
+	 *return the punch in
+	 */
+	
 @Override
 public EmployeeEntity create(EmployeeModel t) {
 	// TODO Auto-generated method stub
@@ -127,7 +123,12 @@ public EmployeeEntity create(EmployeeModel t) {
 
 
 
-
+/*
+ * Update a Employee Object Object
+ * Create a employee object and create set it equal to a new Employee object
+ * Save this Employee Object.
+ * The key difference here is that we are not setting it to null first
+ */
 @Override
 public EmployeeEntity update(EmployeeModel t) {
 	// Make a new album entity
@@ -137,29 +138,33 @@ employeeEntity = this.employeeRepository.save(employeeEntity);
 			
 			
 
-return employeeEntity;}
+return employeeEntity;
+}
 
 
-
+/*
+ * Find the Employee by ID
+ * Refer the actual Employee repository from the mongo repository
+ * Return it.
+ */
 @Override
 public EmployeeEntity findById(String id) {
 	return employeeRepository.getOrderById(id);
-	
-	
 	
 }
 
 
 
+/*
+ * DeleteByPunchID
+ * Look into the Employee repository and refer to the object by the ID and delete it by ID
+ * 
+ */
 @Override
 public void DeleteUser(String t){
-	// TODO Auto-generated method stub
-
+	
 	employeeRepository.deleteById(t);
-	Optional<EmployeeEntity> user;
-	user = employeeRepository.findById(t);
-	
-	
+
 	
 	
 }

@@ -24,11 +24,6 @@ import com.gcu.repository.EmployeeRepository;
 public class RestApiEmployee {
 
 	
-	
-	@Autowired
-	EmployeeDataService dataservice;
-	
-	
 	@Autowired 
 	EmployeeService employeeservice;
 	
@@ -142,7 +137,7 @@ public ResponseEntity<?> edit ( EmployeeModel employee)
 public ResponseEntity<?> DeleteByID(@PathVariable("id") String id){
 	try {
 		
-			dataservice.DeleteUser(id);
+		employeeservice.Delete(id);
 			
 			if(id == null)
 				

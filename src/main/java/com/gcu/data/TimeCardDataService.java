@@ -22,97 +22,115 @@ import com.gcu.repository.TimeCardRepository;
 
 
 /*
- * This is th Time Card Data Service that implements the interface, 
+ * This class implements the TimeCardDataAccess Interface and is the connection to the Database
+ * This class implements the actual logic as well and is responsible for importing the repository from the TimeCard
+ * This class is a service class and is the main driver of functionality in the program for the TimeCard.
  */
 @Service
 public class TimeCardDataService implements TimeCardDataAcessInterface<TimeCardEntity>{
 
 	
+	/*
+	 * TimeCard Repository
+	 * @Param - Autowired TimeCard
+	 * Implments the TimeCard repository instance.
+	 */
 	@Autowired
 	private TimeCardRepository timecardRepository;
 	
+	/*
+	 * Constructor for the time card repository data service
+	 * 
+	 */
 	public TimeCardDataService(TimeCardRepository timecardRepository) {
 		this.timecardRepository = timecardRepository;
 	}
+	
+	/*
+	 * Find all time punches. This Method loops thorugh the TimeCardEntity and creates a TimeCard List object
+	 * Loop through the TimeCard and loop it through the timecard repository and find all. 
+	 * Add each of the parameteres to the list and return it 
+	 * 
+	 */
 	@Override
 	public List<TimeCardEntity> FindAllTimePunches() {
 		
-		List<TimeCardEntity> users = new ArrayList<TimeCardEntity>();
+		List<TimeCardEntity> timecard = new ArrayList<TimeCardEntity>();
 		
 		try {
 			Iterable<TimeCardEntity> ordersIterable = timecardRepository.findAll();
-			users = new ArrayList<TimeCardEntity>();
-			ordersIterable.forEach(users::add);
+			timecard = new ArrayList<TimeCardEntity>();
+			ordersIterable.forEach(timecard::add);
 		}
 		catch(Exception e) {
 			e.printStackTrace();
 		}
 		// return the list
-		return users;
+		return timecard;
 		
 		
 		
 	}
 
+	
+	/*
+	 * Find the timecard by ID
+	 * Refer the actual findtimecard repository from the mongo repository
+	 * Return it.
+	 */
 	@Override
 	public TimeCardEntity findTimeCardById(String id) {
 		return timecardRepository.findTimeCardById(id);
 	}
 
 	
-	// to translate the punchand punch out to strings  away from dates
+	/*
+	 * Create a Punch IN for the timecard
+	 * Set the TimeCard objec to null, 
+	 * Set the object to == a new TimeCard Card object.
+	 * Then Save the punch in to the mongodb by refering to the save repository.
+	 * return the punch in
+	 */
 	@Override
-	public TimeCardEntity Punch_In(TimeCard card) {
-	
+	public TimeCardEntity PunchIn(TimeCard card) {
 		
-		
-		SimpleDateFormat testFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		testFormat.setTimeZone(TimeZone.getTimeZone("US/Arizona"));
-		System.out.println(testFormat.toString());
-		
-		
-		
-		
-		
-		LocalDateTime time = LocalDateTime.now();
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm;ss");
-		String test = time.format(formatter);
-		System.out.println(test.toString() + "  Yo this is the time");
-		System.out.println("Below is the example punch in");
-		System.out.println(test.toString());
-		
-		
-		
-		/*
-		 * This is the regular input
-		 */
 		TimeCardEntity Punch_In = null;
 		
-
-		Punch_In = new TimeCardEntity(card.getId(), card.getFirstname(), card.getLastname(), card.getPunch_in(), card.getPunch_out(), card.getComments(), card.getRole());
-		
-
+		Punch_In = new TimeCardEntity(card.getId(), card.getFirstname(), card.getLastname(), 
+				card.getPunch_in(), card.getPunch_out(), card.getComments(), card.getRole());
+	
 		Punch_In = this.timecardRepository.save(Punch_In);
 		
 		
-		
-		System.out.println(Punch_In.toString());
-		
 		return Punch_In;
+		
 	}
 
+	
+
+	
+	/*
+	 * Update a Time Card Object
+	 * Create a New TimeCard object and create set it equal to a new TimeCard object
+	 * Save this TimeCard Object.
+	 * The key difference here is that we are not setting it to null first
+	 */
 	@Override
-	public TimeCardEntity Punch_Out(TimeCard card) {
-		// TODO Auto-generated method stub
-		return null;
+	public TimeCardEntity UpdateTimeCard(TimeCard card) {
+		
+		TimeCardEntity updateTimeCard = new TimeCardEntity(card.getId(), card.getFirstname(), card.getLastname(), 
+				card.getPunch_in(), card.getPunch_out(), card.getComments(), card.getRole());
+		
+				updateTimeCard = this.timecardRepository.save(updateTimeCard);
+				
+				return updateTimeCard;
 	}
 
-	@Override
-	public TimeCardEntity UpdateTimeCard(TimeCard punch_in) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
+	
+	/*
+	 * DeleteByPunchID
+	 * Look into the timecard repository and refer to the object by the ID and delete it by ID
+	 */
 	@Override
 	public void DeleteTimePunchById(String id) {
 		// TODO Auto-generated method stub

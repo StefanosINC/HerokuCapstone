@@ -22,8 +22,8 @@ public class TimeCardEntity {
 	@Indexed(unique=true)
 	String firstname;
 	String lastname;
-	LocalDateTime punch_in;
-	LocalDateTime punch_out;
+	String punch_in;
+	String punch_out;
 	String comments;
 	String role;
 	
@@ -42,7 +42,7 @@ public class TimeCardEntity {
 	/*
 	 * Constructor for the TimeCard Entity
 	 */
-	public TimeCardEntity(String id, String firstname, String lastname, LocalDateTime punch_in, LocalDateTime punch_out,
+	public TimeCardEntity(String id, String firstname, String lastname, String punch_in, String punch_out,
 			String comments, String role) {
 		super();
 		this.id = id;
@@ -93,22 +93,23 @@ public class TimeCardEntity {
 
 
 
-	public LocalDateTime getPunch_in() {
+	
+	public String getPunch_in() {
 		return punch_in;
 	}
 
 
-	public void setPunch_in(LocalDateTime punch_in) {
+	public void setPunch_in(String punch_in) {
 		this.punch_in = punch_in;
 	}
 
 
-	public LocalDateTime getPunch_out() {
+	public String getPunch_out() {
 		return punch_out;
 	}
 
 
-	public void setPunch_out(LocalDateTime punch_out) {
+	public void setPunch_out(String punch_out) {
 		this.punch_out = punch_out;
 	}
 

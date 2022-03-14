@@ -1,62 +1,47 @@
 package com.gcu.api.employee;
-
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.time.Instant;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.Date;
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.gcu.business.EmployeeService;
 import com.gcu.business.TimeCardService;
-import com.gcu.data.EmployeeDataService;
-import com.gcu.data.TimeCardDataService;
-import com.gcu.model.EmployeeModel;
 import com.gcu.model.TimeCard;
 
-import groovyjarjarantlr.debug.Event;
+/*
+ * Rest Controller for the Timecard APIs
+ * 
+ */
 @RestController
 @RequestMapping("/service1")
 public class TimeCardApi {
 
 
-	@Autowired
-	TimeCardDataService dataservice;
-	
+
+	/*
+	 * Autowire the TimeCard Service
+	 */
 	@Autowired
 	TimeCardService service;
 	
-
+	/*
+	 * Create a Time Punch. 
+	 * @Param - TimeCard - card 
+	 * @return TimeCard Object
+	 * Create a TimeCard object and refer it to the TimeCard Service.
+	 * Loop the logic in a try catch and verify the status of the HTTP request and its current state. 
+	 */
     @PostMapping(path="/Punch")
 	public ResponseEntity<?> CreateTimePunch(TimeCard card){
 
-    	
+
 	try {
-	
+
+			TimeCard Insert = service.PunchIn(card);
 		
-	
-		
-			TimeCard Insert = service.Punch_In(card);
-			
-			System.out.println(Insert);
-			
-			System.out.println(card.toString() + " test");
 			if(Insert == null ) 
 				return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 				else 
@@ -66,24 +51,17 @@ public class TimeCardApi {
 			
 		}
 		catch(Exception e) {
-			
-		//	System.out.println(card.getPunch_in().toString());
-		//	System.out.println(card.getPunch_out().toString());
-			
+
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		
 		}
 }
-@PostMapping("/date")
-public void date(@RequestParam("date") 
-  @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date date) {
-	
-}
 
-
-
-
-// Get Employees By ID 
+/*
+ * This returns the Card Object
+ * Create a list of Employees and Find all the Time Punches
+ * If there is a null value, return not found if not return the ok
+ */
 @GetMapping(path="/getCard")
 	public ResponseEntity<?> getTimeCard(){
 		try {
@@ -104,7 +82,10 @@ public void date(@RequestParam("date")
 		}
 }
 
-//Find By ID
+/*
+ * Return the TimeCard Object by the ID
+ * Return the TimeCard object researched
+ */
 @GetMapping(path="/getTimeCard/{id}")
 	public ResponseEntity<?> ReturnEmployeeID(@PathVariable("id") String id){
 		try {
@@ -125,7 +106,10 @@ public void date(@RequestParam("date")
 		}
 }
 
-//Delete API
+/*
+ * Delete the specific TimeCard Object by the ID 
+ * 
+ */
 @RequestMapping(path="/DeleteTimeCardID/{id}")
 public ResponseEntity<?> DeleteByID(@PathVariable("id") String id){
 	try {

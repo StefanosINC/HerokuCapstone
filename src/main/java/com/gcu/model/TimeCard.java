@@ -19,8 +19,8 @@ public class TimeCard {
 	private String id;
 	private String firstname;
 	private String lastname;
-	private LocalDateTime punch_in;
-	private LocalDateTime punch_out;
+	private String punch_in;
+	private String punch_out;
 	private String comments;
 	private String role;
 	
@@ -28,7 +28,7 @@ public class TimeCard {
 /*
  * Constructor for the TimeCard
  */
-	public TimeCard(String id, String firstname, String lastname, LocalDateTime punch_in, LocalDateTime punch_out, String comments,
+	public TimeCard(String id, String firstname, String lastname, String punch_in, String punch_out, String comments,
 			String role) {
 		super();
 		this.id = id;
@@ -87,31 +87,22 @@ public class TimeCard {
 		this.lastname = lastname;
 	}
 
-
-
-
-
-
-
-
-
-
-	public LocalDateTime getPunch_in() {
+	public String getPunch_in() {
 		return punch_in;
 	}
 
 
-	public void setPunch_in(LocalDateTime punch_in) {
+	public void setPunch_in(String punch_in) {
 		this.punch_in = punch_in;
 	}
 
 
-	public LocalDateTime getPunch_out() {
+	public String getPunch_out() {
 		return punch_out;
 	}
 
 
-	public void setPunch_out(LocalDateTime punch_out) {
+	public void setPunch_out(String punch_out) {
 		this.punch_out = punch_out;
 	}
 

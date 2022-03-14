@@ -3,7 +3,7 @@ package com.gcu.model;
 import java.util.List;
 
 /*
- * Employee Model Class 
+ * Employee Model Class
  */
 public class EmployeeModel {
 

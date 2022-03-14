@@ -20,19 +20,33 @@ import com.gcu.data.EmployeeDataService;
 import com.gcu.model.EmployeeModel;
 import com.gcu.repository.EmployeeRepository;
 
+// API Rest Controller
+/*
+ * 
+ * This class is meant to implement all the Rest API's from the employee services.
+ */
 @RestController
 public class RestApiEmployee {
 
 	
+	/*
+	 * Auto wire the employee service
+	 */
 	@Autowired 
 	EmployeeService employeeservice;
 	
-	
+	/*
+	 * Auto Wire the employee Repository
+	 */
 	@Autowired 
 	EmployeeRepository employeeRepository;
 	
 	
-	// Get Employees By ID 
+	/*
+	 * Get Employees API
+	 * Call on the List of the Employee Service and Find all 
+	 * Verify its not null and return a status 
+	 */
 	@GetMapping(path="/getEmployees")
 		public ResponseEntity<?> getEmployees(){
 			try {
@@ -55,7 +69,10 @@ public class RestApiEmployee {
 
 
 	
-// Find By ID
+/*
+ * Get Employees By ID 
+ * Create a EmployeeModel Object and find the specfici employee ID
+ */
 @GetMapping(path="/getEmployeesID/{id}")
 	public ResponseEntity<?> ReturnEmployeeID(@PathVariable("id") String id){
 		try {
@@ -76,7 +93,10 @@ public class RestApiEmployee {
 		}
 }
 
-// Find by Role 
+/*
+ * Create an employee API
+ * Reference the INSERT Employee object and pass in the mode.
+ */
 @PostMapping(path="/createEmployee")
 public ResponseEntity<?> CreateEmployee(EmployeeModel employee){
 	try {
@@ -98,12 +118,15 @@ public ResponseEntity<?> CreateEmployee(EmployeeModel employee){
 	}
 }
 
-// @PathVariable("id") String id,
+/*
+ * 
+ * Update an Employee API
+ * There is a weird error where I have hto set the parameters after the update.
+ * Return an updated employee
+ */
 @PostMapping(path="/updateEmployee")
 public ResponseEntity<?> edit ( EmployeeModel employee)
 {
-	//EmployeeModel EmployeeID = employeeservice.getEmployeebyID(id);
-	 
 	EmployeeModel updatedEmployee = employeeservice.update(employee);
 	
 	updatedEmployee.setEmployee_id(employee.getEmployee_id());
@@ -132,7 +155,9 @@ public ResponseEntity<?> edit ( EmployeeModel employee)
 	
 }
 
-// Delete API
+/*
+ * Delete Employee By ID 
+ */
 @RequestMapping(path="/deleteEmployee/{id}")
 public ResponseEntity<?> DeleteByID(@PathVariable("id") String id){
 	try {
@@ -153,14 +178,6 @@ public ResponseEntity<?> DeleteByID(@PathVariable("id") String id){
 	
 	}
 }
-
-
-
-
-
-
-
-
 
 
 }

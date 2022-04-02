@@ -19,6 +19,7 @@ public class TimeCardEntity {
 	
 	@Id
 	String id;
+	
 	@Indexed(unique=true)
 	String firstname;
 	String lastname;

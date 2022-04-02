@@ -101,6 +101,13 @@ public class EmployeeModel {
 	public void setRole(String role) {
 		this.role = role;
 	}
+
+	@Override
+	public String toString() {
+		return "EmployeeModel [employee_id=" + employee_id + ", username=" + username + ", password=" + password
+				+ ", email=" + email + ", phone=" + phone + ", firstname=" + firstname + ", lastname=" + lastname
+				+ ", role=" + role + "]";
+	}
 	
 	
 	

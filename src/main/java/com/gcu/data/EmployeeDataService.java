@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 
 import com.gcu.data.entity.EmployeeEntity;
+
 import com.gcu.model.EmployeeModel;
 
 import com.gcu.repository.EmployeeRepository;
@@ -38,7 +39,6 @@ public class EmployeeDataService implements EmployeeDataAccessInterface<Employee
 	}
 
 
-	
 	
 	/*
 	 * Find all Employees This Method loops thorugh the EmployeeEntity and creates a users List object
@@ -79,7 +79,9 @@ public class EmployeeDataService implements EmployeeDataAccessInterface<Employee
 		for(int i = 0; i <users.size(); i++) {
 	
 			if(users.get(i).getUsername().equals(user.getUsername()) && users.get(i).getPassword().equals(user.getPassword())); {
-				System.out.println(users.get(i).getUsername() + " Is Apparantly Equal To " + user.getUsername());
+				
+				
+			
 				count++;
 				
 			}
@@ -90,7 +92,7 @@ public class EmployeeDataService implements EmployeeDataAccessInterface<Employee
 			
 			return true;
 		
-		System.out.println(count);
+		
 		System.out.print(user.getUsername());
 		System.out.print(user.getPassword());
 		
@@ -130,16 +132,52 @@ public EmployeeEntity create(EmployeeModel t) {
  * The key difference here is that we are not setting it to null first
  */
 @Override
-public EmployeeEntity update(EmployeeModel t) {
+public EmployeeEntity update(EmployeeEntity t) {
 	// Make a new album entity
-EmployeeEntity employeeEntity = new EmployeeEntity(t.getEmployee_id(), t.getUsername(), t.getPassword(), t.getEmail(), t.getPhone(), t.getFirstname(), t.getLastname(), t.getRole());	
-			// Making a new album entity, saving the album entity, then return it at the end of the method.
-employeeEntity = this.employeeRepository.save(employeeEntity);
-			
-			
+//EmployeeEntity employeeEntity = new EmployeeEntity(t.getEmployee_id(), t.getUsername(), t.getPassword(), t.getEmail(), t.getPhone(), t.getFirstname(), t.getLastname(), t.getRole());	
+//			// Making a new album entity, saving the album entity, then return it at the end of the method.
+//employeeEntity = this.employeeRepository.save(employeeEntity);
+//			
+//			
+//
+//return employeeEntity;
 
-return employeeEntity;
+
+Optional <EmployeeEntity> employeeDB = this.employeeRepository.findById(t.getId());
+if(employeeDB.isPresent()) {
+	EmployeeEntity employeeUpdate = employeeDB.get();
+	employeeUpdate.setId(t.getId());
+	employeeUpdate.setUsername(t.getUsername());
+	
+	employeeUpdate.setPassword(t.getPassword());
+	
+	employeeUpdate.setEmail(t.getEmail());
+	
+	employeeUpdate.setPhone(t.getPhone());
+	employeeUpdate.setFirstname(t.getFirstname());
+	
+	employeeUpdate.setLastname(t.getLastname());
+	
+	employeeUpdate.setRole(t.getRole());
+
+	System.out.println("Here");
+	employeeRepository.save(employeeUpdate);
+	System.out.println("Save");
+	System.out.println(employeeUpdate.toString());
+	return employeeUpdate;
+	
+}else {
+		
+	  throw new ResourceNotFoundException("Record not found with id : " + t.getId());
 }
+	
+	
+	
+}
+	
+
+
+
 
 
 /*
@@ -170,7 +208,27 @@ public void DeleteUser(String t){
 }
 
 
+
+
+@Override
+public EmployeeEntity findByUsername(String username) {
+
+	/* This calls the findByUsername method from the RegisterRepository class
+     * Will return a UserEntity when username is found in the database
+	 * @param - String username
+	 * @Return found username, 
+	 * @throw new runtime exception
+	 *
+	 */
+
+	return employeeRepository.findByUsername(username);
 }
+	
+	
+}
+
+
+
 
 
 

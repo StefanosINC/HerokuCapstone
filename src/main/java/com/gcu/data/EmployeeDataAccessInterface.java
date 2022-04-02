@@ -21,10 +21,11 @@ public interface EmployeeDataAccessInterface <T> {
 	public EmployeeEntity create(EmployeeModel t);
 	public EmployeeEntity findById(String id);
 	
-	public EmployeeEntity update(EmployeeModel t);
+	public EmployeeEntity update(EmployeeEntity t);
 	public void DeleteUser(String t);
 	
-
+	public T findByUsername(String username);
+	
 	
 	
 }

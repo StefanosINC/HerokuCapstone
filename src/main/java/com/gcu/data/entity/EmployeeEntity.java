@@ -152,5 +152,11 @@ public class EmployeeEntity {
 	public void setRole(String role) {
 		this.role = role;
 	}
+
+	@Override
+	public String toString() {
+		return "EmployeeEntity [id=" + id + ", username=" + username + ", password=" + password + ", email=" + email
+				+ ", phone=" + phone + ", firstname=" + firstname + ", lastname=" + lastname + ", role=" + role + "]";
+	}
 	
 }

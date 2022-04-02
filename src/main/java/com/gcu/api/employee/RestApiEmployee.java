@@ -2,6 +2,7 @@ package com.gcu.api.employee;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -12,11 +13,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.gcu.business.EmployeeService;
 import com.gcu.data.EmployeeDataService;
+import com.gcu.data.entity.EmployeeEntity;
 import com.gcu.model.EmployeeModel;
 import com.gcu.repository.EmployeeRepository;
 
@@ -42,6 +47,8 @@ public class RestApiEmployee {
 	EmployeeRepository employeeRepository;
 	
 	
+	@Autowired
+	EmployeeDataService dataservice;
 	/*
 	 * Get Employees API
 	 * Call on the List of the Employee Service and Find all 
@@ -98,11 +105,13 @@ public class RestApiEmployee {
  * Reference the INSERT Employee object and pass in the mode.
  */
 @PostMapping(path="/createEmployee")
-public ResponseEntity<?> CreateEmployee(EmployeeModel employee){
+
+public ResponseEntity<?> CreateEmployee(@RequestBody EmployeeModel employee){
 	try {
 		EmployeeModel CreateEmployee = employeeservice.insertEmployee(employee);
 		
-		System.out.println(CreateEmployee);
+		System.out.println(CreateEmployee.toString());
+		
 		
 		if(CreateEmployee == null ) 
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -124,34 +133,12 @@ public ResponseEntity<?> CreateEmployee(EmployeeModel employee){
  * There is a weird error where I have hto set the parameters after the update.
  * Return an updated employee
  */
-@PostMapping(path="/updateEmployee")
-public ResponseEntity<?> edit ( EmployeeModel employee)
-{
-	EmployeeModel updatedEmployee = employeeservice.update(employee);
+@PutMapping(path="/updateEmployee/{id}")
+public ResponseEntity<EmployeeEntity> edit (@PathVariable("id")String id, @RequestBody EmployeeEntity employee)
+{	
 	
-	updatedEmployee.setEmployee_id(employee.getEmployee_id());
-	updatedEmployee.setUsername(employee.getUsername());
-	updatedEmployee.setPassword(employee.getPassword());
-	updatedEmployee.setFirstname(employee.getFirstname());
-	updatedEmployee.setLastname(employee.getLastname());
-	updatedEmployee.setPhone(employee.getPhone());
-	updatedEmployee.setRole(employee.getRole());
-
-	
-	try {
-		
-		if(updatedEmployee == null ) 
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-			else 
-				
-				return new ResponseEntity<>(updatedEmployee, HttpStatus.OK);		
-		
-		
-	}
-	catch(Exception e) {
-		return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-	
-	}
+	employee.setId(id);
+	return ResponseEntity.ok().body(this.dataservice.update(employee));
 	
 }
 
@@ -179,6 +166,29 @@ public ResponseEntity<?> DeleteByID(@PathVariable("id") String id){
 	}
 }
 
+@RequestMapping(path="/login")
+	public ResponseEntity<?> Login (@RequestBody EmployeeModel user){
+	
+	
+	try {
+		employeeservice.login(user);
+		System.out.println(user);
+		
+		
+	if(user == null)
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		else 
+			
+			return new ResponseEntity<>(user, HttpStatus.OK);		
+	
+	
+}
+	catch(Exception e) {
+	return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 
+}
+	
+
+}
 }
 

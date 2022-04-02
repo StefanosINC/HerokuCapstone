@@ -7,6 +7,12 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.security.core.GrantedAuthority;
 //import org.springframework.security.core.authority.SimpleGrantedAuthority;
+//import org.springframework.security.core.userdetails.User;
+//import org.springframework.security.core.userdetails.UserDetails;
+//import org.springframework.security.core.userdetails.UserDetailsService;
+//import org.springframework.security.core.userdetails.UsernameNotFoundException;
+//import org.springframework.security.core.GrantedAuthority;
+//import org.springframework.security.core.authority.SimpleGrantedAuthority;
 //import org.springframework.security.core.userdetails.UserDetails;
 //import org.springframework.security.core.userdetails.UserDetailsService;
 //import org.springframework.security.core.userdetails.User;
@@ -100,13 +106,13 @@ public class EmployeeService implements EmployeeServiceInterface{
 	 * call on the data service and set it to the object in the parameters
 	 * return the employee entity once converting back into the model
 	 */
-	@Override
-	public EmployeeModel update(EmployeeModel t) {
-
-	EmployeeEntity employeeEntity = service.update(t);
-	return ConvertEntity(employeeEntity);
-	}
-	
+//	@Override
+//	public EmployeeModel update(EmployeeModel t) {
+//
+//	EmployeeEntity employeeEntity = service.update(t);
+//	return ConvertEntity(employeeEntity);
+//	}
+//	
 	
 	/*
 	 * Set the Employee Object = to the service.FindByID
@@ -146,9 +152,26 @@ public class EmployeeService implements EmployeeServiceInterface{
 	 */
 	@Override
 	public boolean login(EmployeeModel user) {
-		// TODO Auto-generated method stub
-		return false;
+	
+
+		return service.login(user);		
 	}
+
+//	@Override
+//	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+//		EmployeeEntity user = service.findByUsername(username);
+//		if(user != null)
+//		{
+//			List<GrantedAuthority> authorites = new ArrayList<GrantedAuthority>();
+//			authorites.add(new SimpleGrantedAuthority("USER"));
+//			
+//			return new User(user.getUsername(), user.getPassword(), authorites);
+//		}
+//		else
+//		{
+//			throw new UsernameNotFoundException("username not found");
+//		}
+//	}
 	
 	
 	}

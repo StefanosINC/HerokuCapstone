@@ -26,6 +26,7 @@ public interface EmployeeServiceInterface {
 	List<EmployeeModel> findAll();
 	public EmployeeModel insertEmployee(EmployeeModel user);
 	public EmployeeModel getEmployeebyID(String id);
-	public EmployeeModel update(EmployeeModel t);
+//	public EmployeeModel update(EmployeeModel t);
 	public void Delete(String id);
+	
 }

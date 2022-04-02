@@ -16,7 +16,6 @@ import com.gcu.model.TimeCard;
  * 
  */
 @RestController
-@RequestMapping("/service1")
 public class TimeCardApi {
 
 

@@ -166,12 +166,16 @@ public ResponseEntity<?> DeleteByID(@PathVariable("id") String id){
 	}
 }
 
-@RequestMapping(path="/login")
-	public ResponseEntity<?> Login (@RequestBody EmployeeModel user){
+@PostMapping(path="/login")
+	public ResponseEntity<?> Login (@RequestBody String user){
 	
+	System.out.println("here");
+	employeeservice.loadUserByUsername(user);
 	
+	System.out.println(user);
 	try {
-		employeeservice.login(user);
+		employeeservice.loadUserByUsername(user);
+		
 		System.out.println(user);
 		
 		
@@ -187,6 +191,7 @@ public ResponseEntity<?> DeleteByID(@PathVariable("id") String id){
 	return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 
 }
+	
 	
 
 }

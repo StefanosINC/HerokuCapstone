@@ -167,7 +167,10 @@ public class EmployeeService implements EmployeeServiceInterface, UserDetailsSer
 			List<GrantedAuthority> authorites = new ArrayList<GrantedAuthority>();
 			authorites.add(new SimpleGrantedAuthority("USER"));
 			
+			System.out.println("In load by username");
+			System.out.println(username + " username was ");
 		return new User(user.getUsername(), user.getPassword(), authorites);
+
 		}
 		else
 		{

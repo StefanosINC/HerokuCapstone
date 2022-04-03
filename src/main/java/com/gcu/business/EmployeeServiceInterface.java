@@ -22,7 +22,7 @@ public interface EmployeeServiceInterface {
 	
 	public void init();
 	public void destroy();
-	public boolean login(EmployeeModel user);
+	public EmployeeModel login(EmployeeModel user);
 	List<EmployeeModel> findAll();
 	public EmployeeModel insertEmployee(EmployeeModel user);
 	public EmployeeModel getEmployeebyID(String id);

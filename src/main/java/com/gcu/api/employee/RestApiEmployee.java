@@ -166,24 +166,29 @@ public ResponseEntity<?> DeleteByID(@PathVariable("id") String id){
 	}
 }
 
-@RequestMapping(path="/login")
+@PostMapping(path="/login")
 	public ResponseEntity<?> Login (@RequestBody EmployeeModel user){
 	
+	System.out.println(user.toString());
 	
 	try {
-		employeeservice.login(user);
-		System.out.println(user);
+		System.out.println("174");
 		
+		EmployeeModel loginuser = employeeservice.login(user);
 		
-	if(user == null)
+		System.out.println(loginuser.toString());
+		
+	if(loginuser == null)
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		else 
 			
-			return new ResponseEntity<>(user, HttpStatus.OK);		
+			return new ResponseEntity<>(loginuser, HttpStatus.OK);		
 	
 	
 }
+	
 	catch(Exception e) {
+		e.printStackTrace();
 	return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 
 }

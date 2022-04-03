@@ -69,35 +69,19 @@ public class EmployeeDataService implements EmployeeDataAccessInterface<Employee
 	 * It then compares the returned users from the entity list to the model that was inserted and validates the login
 	 */
 	@Override
-	public boolean login(EmployeeModel user) 
+	public EmployeeEntity login(EmployeeModel user) 
 	{
-		int count = 0;
-		List<EmployeeEntity> users = new ArrayList<EmployeeEntity>();
+	 EmployeeEntity LoginEmployee = employeeRepository.findByUsername(user.getUsername());
 		
-		users = findAll();
-		
-		for(int i = 0; i <users.size(); i++) {
+	 System.out.println(" Data Service " + LoginEmployee.toString());
+	 
+	 if(!LoginEmployee.getPassword().equals(user.getPassword()))
+	 
+	 return null;
+	 else
+		 return LoginEmployee;
+	 }
 	
-			if(users.get(i).getUsername().equals(user.getUsername()) && users.get(i).getPassword().equals(user.getPassword())); {
-				
-				
-			
-				count++;
-				
-			}
-			
-		}
-		if(count == 1)
-			
-			
-			return true;
-		
-		
-		System.out.print(user.getUsername());
-		System.out.print(user.getPassword());
-		
-		return false;
-	}
 
 	 /* Create a Employee for the EmployeeEntity
 	 * Set the newEmployee object to null, 

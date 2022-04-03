@@ -15,7 +15,7 @@ import com.gcu.model.EmployeeModel;
  */
 public interface EmployeeDataAccessInterface <T> {
 
-	public boolean login(EmployeeModel user);
+	public EmployeeEntity login(EmployeeModel user);
 	List<EmployeeEntity> findAll();
 
 	public EmployeeEntity create(EmployeeModel t);

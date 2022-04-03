@@ -151,10 +151,16 @@ public class EmployeeService implements EmployeeServiceInterface{
 	 * 
 	 */
 	@Override
-	public boolean login(EmployeeModel user) {
+	public EmployeeModel login(EmployeeModel user) {
 	
-
-		return service.login(user);		
+		
+		EmployeeEntity loginEntity = service.login(user);
+		
+		System.out.println("Login Entity is here " + loginEntity.toString());
+		
+		return ConvertEntity(loginEntity);
+		
+		
 	}
 
 //	@Override

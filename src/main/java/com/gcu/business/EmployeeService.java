@@ -5,6 +5,12 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 //import org.springframework.security.core.GrantedAuthority;
 //import org.springframework.security.core.authority.SimpleGrantedAuthority;
 //import org.springframework.security.core.userdetails.User;
@@ -34,7 +40,7 @@ import com.gcu.model.EmployeeModel;
  * Also this class inherits the spring bean objects , init , destroy 
  */
 @Service
-public class EmployeeService implements EmployeeServiceInterface{
+public class EmployeeService implements EmployeeServiceInterface, UserDetailsService{
 
 	/*
 	 * Import the Employee DataService methods 
@@ -150,28 +156,30 @@ public class EmployeeService implements EmployeeServiceInterface{
 	 * Login method not created yet 
 	 * 
 	 */
-	@Override
-	public boolean login(EmployeeModel user) {
 	
 
-		return service.login(user);		
+	
+	@Override
+	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+		EmployeeEntity user = service.findByUsername(username);
+		if(user != null)
+		{
+			List<GrantedAuthority> authorites = new ArrayList<GrantedAuthority>();
+			authorites.add(new SimpleGrantedAuthority("USER"));
+			
+		return new User(user.getUsername(), user.getPassword(), authorites);
+		}
+		else
+		{
+		throw new UsernameNotFoundException("username not found");
+	}
 	}
 
-//	@Override
-//	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-//		EmployeeEntity user = service.findByUsername(username);
-//		if(user != null)
-//		{
-//			List<GrantedAuthority> authorites = new ArrayList<GrantedAuthority>();
-//			authorites.add(new SimpleGrantedAuthority("USER"));
-//			
-//			return new User(user.getUsername(), user.getPassword(), authorites);
-//		}
-//		else
-//		{
-//			throw new UsernameNotFoundException("username not found");
-//		}
-//	}
+	@Override
+	public boolean login(EmployeeModel user) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 	
 	
 	}

@@ -20,7 +20,7 @@ public interface TimeCardDataAcessInterface <T>{
 	public TimeCardEntity PunchIn(TimeCard card);
 	
 	
-	public TimeCardEntity UpdateTimeCard(TimeCard card);
+	public TimeCardEntity UpdateTimeCard(TimeCardEntity card);
 	
 	public void DeleteTimePunchById(String id);
 	

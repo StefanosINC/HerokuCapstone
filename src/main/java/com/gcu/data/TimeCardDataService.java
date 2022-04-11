@@ -116,16 +116,47 @@ public class TimeCardDataService implements TimeCardDataAcessInterface<TimeCardE
 	 * The key difference here is that we are not setting it to null first
 	 */
 	@Override
-	public TimeCardEntity UpdateTimeCard(TimeCard card) {
+	public TimeCardEntity UpdateTimeCard(TimeCardEntity t) {
 		
-		TimeCardEntity updateTimeCard = new TimeCardEntity(card.getId(), card.getFirstname(), card.getLastname(), 
-				card.getPunch_in(), card.getPunch_out(), card.getComments(), card.getRole());
-		
-				updateTimeCard = this.timecardRepository.save(updateTimeCard);
-				
-				return updateTimeCard;
-	}
+//		TimeCardEntity updateTimeCard = new TimeCardEntity(card.getId(), card.getFirstname(), card.getLastname(), 
+//				card.getPunch_in(), card.getPunch_out(), card.getComments(), card.getRole());
+//		
+//				updateTimeCard = this.timecardRepository.save(updateTimeCard);
+//				
+//				return updateTimeCard;
+//	}
 
+
+Optional <TimeCardEntity> employeeDB = this.timecardRepository.findById(t.getId());
+if(employeeDB.isPresent()) {
+	TimeCardEntity Card = employeeDB.get();
+	Card.setId(t.getId());
+	Card.setFirstname(t.getFirstname());
+	
+	Card.setLastname(t.getLastname());
+	
+	Card.setPunch_in(t.getPunch_in());
+	
+	Card.setPunch_out(t.getPunch_out());
+
+	Card.setComments(t.getComments());
+	Card.setRole(t.getRole());
+
+	System.out.println("Here");
+	timecardRepository.save(Card);
+	System.out.println("Save");
+	System.out.println(Card.toString());
+	return Card;
+	
+}else {
+		
+	  throw new ResourceNotFoundException("Record not found with id : " + t.getId());
+}
+	
+	
+	
+}
+	
 	
 	/*
 	 * DeleteByPunchID

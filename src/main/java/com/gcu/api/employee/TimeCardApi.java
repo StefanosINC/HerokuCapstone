@@ -6,9 +6,14 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.gcu.business.TimeCardService;
+import com.gcu.data.TimeCardDataService;
+import com.gcu.data.entity.EmployeeEntity;
+import com.gcu.data.entity.TimeCardEntity;
 import com.gcu.model.TimeCard;
 
 /*
@@ -26,6 +31,8 @@ public class TimeCardApi {
 	@Autowired
 	TimeCardService service;
 	
+	@Autowired
+	TimeCardDataService dataservice;
 	/*
 	 * Create a Time Punch. 
 	 * @Param - TimeCard - card 
@@ -34,7 +41,7 @@ public class TimeCardApi {
 	 * Loop the logic in a try catch and verify the status of the HTTP request and its current state. 
 	 */
     @PostMapping(path="/Punch")
-	public ResponseEntity<?> CreateTimePunch(TimeCard card){
+	public ResponseEntity<?> CreateTimePunch(@RequestBody TimeCard card){
 
 
 	try {
@@ -128,6 +135,15 @@ public ResponseEntity<?> DeleteByID(@PathVariable("id") String id){
 		return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 	
 	}
+}
+
+@PutMapping(path="/updateCard/{id}")
+public ResponseEntity<TimeCardEntity> edit (@PathVariable("id")String id, @RequestBody TimeCardEntity card)
+{	
+	
+	card.setId(id);
+	return ResponseEntity.ok().body(this.dataservice.UpdateTimeCard(card));
+	
 }
 
 }
